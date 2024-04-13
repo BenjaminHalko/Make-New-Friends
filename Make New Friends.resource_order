@@ -1,0 +1,12 @@
+{
+  "FolderOrderSettings":[
+    {"name":"~GMLive","order":1,"path":"folders/~GMLive.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"GMLive_fallback","order":2,"path":"extensions/GMLive_fallback/GMLive_fallback.yy",},
+    {"name":"obj_gmlive","order":7,"path":"objects/obj_gmlive/obj_gmlive.yy",},
+    {"name":"GMLive","order":1,"path":"scripts/GMLive/GMLive.yy",},
+    {"name":"GMLiveAPI_js","order":6,"path":"scripts/GMLiveAPI_js/GMLiveAPI_js.yy",},
+    {"name":"GMLiveAPI","order":5,"path":"scripts/GMLiveAPI/GMLiveAPI.yy",},
+  ],
+}

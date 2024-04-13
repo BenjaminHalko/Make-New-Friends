@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"GMLiveAPI_js",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GMLiveAPI_js",
+  "parent":{
+    "name":"~GMLive",
+    "path":"folders/~GMLive.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
