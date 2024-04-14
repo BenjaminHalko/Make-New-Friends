@@ -8,3 +8,9 @@ function SummonShape() {
 		pulse = 1;
 	}
 }
+
+enum FACE {
+	Friend,
+	Dead,
+	Worried
+}

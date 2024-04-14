@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"PickName",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PickName",
+  "parent":{
+    "name":"Wave",
+    "path":"folders/Wave.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

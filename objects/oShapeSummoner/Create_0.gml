@@ -14,3 +14,10 @@ shapeAngle = 0;
 shapeAngleTarget = 0;
 faceAngle = 0;
 faceAngleTarget = 0;
+
+worried = false;
+shapeX = x;
+shapeY = y;
+shapeRadiusAbsorb = 1;
+personID = noone;
+absorbPercent = 0;

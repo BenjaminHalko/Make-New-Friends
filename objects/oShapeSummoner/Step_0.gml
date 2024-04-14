@@ -28,6 +28,28 @@ if (!instance_exists(oShapeExplode)) {
 }
 
 shapeAngle = ApproachFade(shapeAngle, shapeAngleTarget, 50, 0.7);
-faceAngle = ApproachFade(faceAngle, faceAngleTarget, 50, 0.7);
+faceAngle = ApproachFade(faceAngle, faceAngleTarget * (!worried or faceAngleTarget == -360), 50, 0.7);
 
 image_blend = merge_color(c_white, global.currentShape.color, pulse);
+
+// MOVE TO NEXT FRIEND
+worried = false;
+var _percent = max(0,(frac(global.audioPos)-0.5) * 2);
+if (!instance_exists(personID)) {
+	with(oPerson) {
+		if (normalizedTargetBeat == ceil(global.audioPos)) {
+			other.personID = id;	
+		}
+	}
+	shapeX = x;
+	shapeY = y;
+	shapeRadiusAbsorb = 1;
+} else {
+	if (personID.properties.color != global.currentShape.color or personID.properties.sides != global.currentShape.sides) {
+		_percent = 0;
+		worried = true;
+	}
+	shapeX = lerp(x, personID.x, _percent);
+	shapeY = lerp(y, personID.y, _percent);
+	shapeRadiusAbsorb = lerp(1, 32/56, _percent);
+}

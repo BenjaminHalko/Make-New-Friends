@@ -13,10 +13,3 @@ if (selectedPercent != 0) {
 }
 
 DrawShape(shapeX, shapeY, shapeSize + animcurve_channel_evaluate(pulseCurve, 1-pulse) * 8 - selectedPercent * 3, global.shapeProperties[index], rotation, pulse, selectedPercent * 0.6);
-
-if (_showColor) {
-	StopBloom();
-	draw_set_color(merge_color(global.shapeProperties[index].color, c_white, 0.5));
-	DrawOutline(shapeX, shapeY, (shapeSize + animcurve_channel_evaluate(pulseCurve, 1-pulse) * 8 - selectedPercent * 3) * 0.5, global.shapeProperties[index].sides, rotation);
-	StartBloom();
-}

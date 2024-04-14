@@ -86,40 +86,15 @@ function Wrap(_value, _min, _max) {
 
 }
 
-/// @desc Returns a value that will wave back and forth between [from-to] over [duration] seconds
-/// @param {Real} from The minimum wave range
-/// @param {Real} to The maximum wave range
-/// @param {Real} duration The duration of the wave in seconds
-/// @param {Real} offset The offset of the wave from 0 to 1
-/// @param {Bool} [ignoreDeltaTime] Ignores deltatime
-function Wave(_from, _to, _duration, _offset, _ignoreDeltaTime=false) constructor {
-	static step = function() {
-		var _delta = (ignoreDeltaTime) ? 1 : deltaTime;
-		time += _delta/60;
-		var _a4 = (to - from) * 0.5;
-		value = from + _a4 + sin(((time + duration * offset) / duration) * (pi*2)) * _a4;
-	}
-	
-	from = _from;
-	to = _to;
-	duration = _duration;
-	offset = _offset;
-	ignoreDeltaTime = _ignoreDeltaTime;
-	time = 0;
-	var _a4 = (to - from) * 0.5;
-	value = from + _a4 + sin(((duration * offset) / duration) * (pi*2)) * _a4;
-}
-
-function drawCircle(_x, _y, _radius) {
-	var _offset = 0.5 + (!BROWSER)*0.5;
-	draw_circle(_x-_offset, _y-_offset, _radius, false);	
-}
-
 function Save(_section, _key, _value) {
 	ini_open(SAVEFILE);
 	if is_real(_value) ini_write_real(_section, _key, _value);
 	else ini_write_string(_section, _key, _value);
 	ini_close();
+}
+
+function DisplayNumber(_num, _digits) {
+	return string_replace_all(string_format(_num,_digits,0)," ","0");
 }
 
 function RenderConverArt(_sprite) {

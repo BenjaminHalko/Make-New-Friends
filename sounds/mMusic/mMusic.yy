@@ -7,9 +7,9 @@
   },
   "bitDepth":1,
   "bitRate":128,
-  "compression":0,
+  "compression":2,
   "conversionMode":0,
-  "duration":232.61514,
+  "duration":398.76883,
   "name":"mMusic",
   "parent":{
     "name":"Music",

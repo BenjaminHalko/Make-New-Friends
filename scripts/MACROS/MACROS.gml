@@ -6,11 +6,5 @@
 #macro OutlineSize 0.8
 #macro CircleSides 8
 
-globalvar MinSpawnX;
-globalvar MaxSpawnX;
-MinSpawnX = 150;
-MaxSpawnX = room_width;
-
-#macro SAVEFILE "save.ini"
-
-#macro BROWSER false
+#macro MinSpawnX 200
+#macro MaxSpawnX room_width+240

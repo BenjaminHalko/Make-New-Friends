@@ -5,4 +5,3 @@ var _tick = global.audioPos % 1;
 global.audioTick = (_tick < lastTick);
 global.audioBeat = floor(global.audioPos);
 lastTick = _tick;
-lastBar = global.audioBeat;

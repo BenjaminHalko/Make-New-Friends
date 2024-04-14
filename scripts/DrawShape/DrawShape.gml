@@ -29,6 +29,13 @@ function DrawShape(_x, _y, _size, _shapeProperties, _angle=0, _white=0, _black=0
 			DrawPolygon(_x, _y, _size * OutlineSize, _shapeProperties.sides, _angle);
 		}
 	}
+	
+	if (_showColor) {
+		StopBloom();
+		draw_set_color(merge_color(_shapeProperties.color, c_white, 0.5));
+		DrawOutline(_x,_y,_size,_shapeProperties.sides,_angle);
+		StartBloom();
+	}
 }
 
 function DrawPolygon(_x, _y, _size, _sides, _angle) {
@@ -52,10 +59,10 @@ function DrawOutline(_x, _y, _radius, _sides, _angle) {
 	var _oneAngle = 360 / _sides;
 	for(var i = 0; i < _sides; i++) {
 		draw_line(
-			_x + lengthdir_x(_radius, _angle+_oneAngle*i)-1,
-			_y + lengthdir_y(_radius, _angle+_oneAngle*i)-1,
-			_x + lengthdir_x(_radius, _angle+_oneAngle*(i+1))-1,
-			_y + lengthdir_y(_radius, _angle+_oneAngle*(i+1))-1
+			_x + lengthdir_x(_radius, _angle+_oneAngle*i)-0.5-(!BROWSER)*0.5,
+			_y + lengthdir_y(_radius, _angle+_oneAngle*i)-0.5-(!BROWSER)*0.5,
+			_x + lengthdir_x(_radius, _angle+_oneAngle*(i+1))-0.5-(!BROWSER)*0.5,
+			_y + lengthdir_y(_radius, _angle+_oneAngle*(i+1))-0.5-(!BROWSER)*0.5
 		);
 	}
 }
