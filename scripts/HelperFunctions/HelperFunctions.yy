@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"HelperFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"HelperFunctions",
+  "parent":{
+    "name":"Global",
+    "path":"folders/Global.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

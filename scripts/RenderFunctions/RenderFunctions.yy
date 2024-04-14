@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"RenderFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RenderFunctions",
+  "parent":{
+    "name":"Render",
+    "path":"folders/Render.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

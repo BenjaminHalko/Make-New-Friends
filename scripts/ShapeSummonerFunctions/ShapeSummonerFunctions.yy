@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ShapeSummonerFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ShapeSummonerFunctions",
+  "parent":{
+    "name":"Shape-o-tron",
+    "path":"folders/Shape-o-tron.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
