@@ -1,0 +1,18 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"ShapeSummonCurves",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"summon","colour":4290799884,"name":"summon","points":[
+        {"th0":-0.1,"th1":0.45114505,"tv0":0.0,"tv1":1.1066668,"x":0.0,"y":0.0,},
+        {"th0":-0.3480916,"th1":0.1,"tv0":0.72,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"ShapeSummonCurves",
+  "parent":{
+    "name":"Shape-o-tron",
+    "path":"folders/Shape-o-tron.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

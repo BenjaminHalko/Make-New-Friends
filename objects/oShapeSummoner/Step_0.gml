@@ -30,7 +30,7 @@ shapeAngleTarget -= 0.5;
 if (!instance_exists(oShapeExplode)) {
 	shapePulse = ApproachFade(shapePulse, 0, 0.1, 0.8);
 	pulse = ApproachFade(pulse, 0, 0.08, 0.8);
-	shapeRadius = ApproachFade(shapeRadius, 1, 0.4, 0.7);
+	shapeRadius = Approach(shapeRadius, 1, 0.1);
 }
 
 shapeAngle = ApproachFade(shapeAngle, shapeAngleTarget, 50, 0.7);

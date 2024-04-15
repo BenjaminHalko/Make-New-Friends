@@ -22,3 +22,5 @@ personID = noone;
 absorbPercent = 0;
 points = 0;
 lastShapeBeat = 0;
+
+summonCurve = animcurve_get_channel(ShapeSummonCurves, "summon");

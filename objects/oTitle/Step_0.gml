@@ -8,6 +8,10 @@ introY = ApproachFade(introY, room_height/2+(oGUI.guiY-room_height)/2, 20, 0.7);
 x = round(introX);
 y = round(introY);
 
+if (global.gameOver)
+	heightHalf = 94;
+else if (global.title)
+	heightHalf = 80;
 
 // INPUT
 if (global.title or global.gameOver) {

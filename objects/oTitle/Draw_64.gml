@@ -46,7 +46,15 @@ if (x != room_width + widthHalf + 50) {
 		draw_set_color(c_white);
 	
 		var _x = x-widthHalf+20;
-		var _y = y-heightHalf+14;
+		var _y = y-heightHalf+12;
+		
+		if (heightHalf != 80) {
+			draw_text(x,_y,"GAME OVER!");
+			draw_set_font(fNormal);
+			draw_text(x,_y+8,$"You were killed by {diedTo}");
+			draw_set_font(fLarge);
+			_y += 28;
+		}
 	
 		draw_text(_x+12, _y, "PLACE");
 		draw_text(_x+84, _y, "NAME");
@@ -83,7 +91,7 @@ if (x != room_width + widthHalf + 50) {
 	
 		draw_set_color(c_dkgray);
 		draw_set_halign(fa_center);
-		draw_text(x,170,"PRESS ENTER TO");
-		draw_text(x,178,"CONTINUE");	
+		draw_text(x,_y+124,"PRESS ENTER TO");
+		draw_text(x,_y+133,"CONTINUE");	
 	}
 } 

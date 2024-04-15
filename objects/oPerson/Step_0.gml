@@ -25,12 +25,16 @@ if (_beat >= targetBeat) {
 				global.currentShape.color = c_white;
 			}
 		}
-		PersonDestroy();	
+		PersonDestroy();
 		oGUI.evilPulse = 1;
+		/*
 		global.lives--;
 		oGUI.heartScale[global.lives div 2] = 1.4;
-		if (global.lives <= 0)
+		if (global.lives <= 0) {
+			oTitle.diedTo = name;
 			GameOver();
+		}
+		*/
 	} else {
 		oShapeAbsorb.friendRotation = angle;	
 	}

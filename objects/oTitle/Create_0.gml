@@ -23,3 +23,5 @@ blink = false;
 scoreOffsetTarget = 0;
 scoresPerPage = 10;
 scoreOffset = 0;
+
+diedTo = "Me";

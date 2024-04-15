@@ -38,6 +38,20 @@ if (!_lastPressed and isPressed) {
 		if (_hasSides)
 			global.currentShape.sides = global.shapeProperties[index].sides;
 	
+		with(oShapeSummoner) {
+			repeat(20) {
+				with(instance_create_depth(x,y,depth-1,oTriangleParticle)) {
+					radius = 14;
+					direction = random(360);
+					image_angle = random(360);
+					spd = random_range(0.03, 0.05);
+					speed = random_range(1.6, 3);
+					image_blend = merge_color(global.currentShape.color, c_white, 0.5);
+					sides = global.currentShape.sides;
+				}
+			}
+		}
+	
 		with(oInputDisplay) {
 			if (id == other.id) continue;
 			if ((_hasColor and !is_undefined(global.shapeProperties[index].color))

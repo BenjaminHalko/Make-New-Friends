@@ -18,7 +18,7 @@ if (async_load[? "type"] == "FirebaseRealTime_Read" or async_load[? "type"] == "
 						level: _scoreData.level
 					}
 					
-					repeat(min(5, _scoreData.level)) {
+					repeat(min(5, floor(_scoreData.level/2))) {
 						array_push(names, _names[i]);
 					}
 				} catch(_error) {
