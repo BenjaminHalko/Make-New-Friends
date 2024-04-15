@@ -1,6 +1,6 @@
 {
   "$GMProject":"",
-  "%Name":"Make New Friends",
+  "%Name":"Make Friends",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -49,7 +49,7 @@
   "MetaData":{
     "IDEVersion":"2024.2.0.132",
   },
-  "name":"Make New Friends",
+  "name":"Make Friends",
   "resources":[
     {"id":{"name":"ShapeCurves","path":"animcurves/ShapeCurves/ShapeCurves.yy",},},
     {"id":{"name":"FirebaseSetup","path":"extensions/FirebaseSetup/FirebaseSetup.yy",},},
