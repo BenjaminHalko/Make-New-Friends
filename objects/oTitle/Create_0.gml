@@ -25,3 +25,5 @@ scoresPerPage = 10;
 scoreOffset = 0;
 
 diedTo = "Me";
+
+titlePulse = [0, 0];

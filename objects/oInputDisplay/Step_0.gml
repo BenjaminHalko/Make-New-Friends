@@ -50,6 +50,8 @@ if (!_lastPressed and isPressed) {
 					sides = global.currentShape.sides;
 				}
 			}
+			
+			CreateShockwave(x,y,400);
 		}
 	
 		with(oInputDisplay) {

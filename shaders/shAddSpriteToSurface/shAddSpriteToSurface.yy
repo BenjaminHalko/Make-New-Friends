@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shAddSpriteToSurface",
+  "name":"shAddSpriteToSurface",
+  "parent":{
+    "name":"Shockwave",
+    "path":"folders/Shape-o-tron/Shockwave.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -40,7 +40,7 @@ image_blend = merge_color(oGUI.image_blend, global.currentShape.color, pulse);
 
 // MOVE TO NEXT FRIEND
 worried = false;
-var _percent = (frac(global.audioPos)-0.7) * 10/3;
+var _percent = (frac(global.audioPos)-0.5) * 2;
 if (!instance_exists(oShapeAbsorb) and _percent >= 0) {
 	if (!instance_exists(personID)) {
 		with(oPerson) {
@@ -51,6 +51,7 @@ if (!instance_exists(oShapeAbsorb) and _percent >= 0) {
 	}
 	
 	if (instance_exists(personID)) {
+		worried = true;
 		if (personID.properties.color != global.currentShape.color or personID.properties.sides != global.currentShape.sides) {
 			worried = true;
 		} else {

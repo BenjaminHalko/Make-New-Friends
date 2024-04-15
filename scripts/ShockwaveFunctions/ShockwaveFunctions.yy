@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ShockwaveFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ShockwaveFunctions",
+  "parent":{
+    "name":"Shockwave",
+    "path":"folders/Shape-o-tron/Shockwave.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

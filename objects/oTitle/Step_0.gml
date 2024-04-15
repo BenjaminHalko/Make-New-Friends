@@ -16,6 +16,13 @@ else if (global.title)
 // INPUT
 if (global.title or global.gameOver) {
 	if (!lookAtLeaderboard) {
+		if (global.audioTick) {
+			titlePulse[global.audioBeat % 2] = 1;	
+		}
+		
+		titlePulse[0] = ApproachFade(titlePulse[0], 0, 0.1, 0.8);
+		titlePulse[1] = ApproachFade(titlePulse[1], 0, 0.1, 0.8);
+		
 		if (keyDown or keyUp) and (option != 2 or (!keyboard_check(ord("W")) and !keyboard_check(ord("S")))) {
 			if (acceptMenuInput) {
 				if (option == 2) {

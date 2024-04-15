@@ -12,9 +12,11 @@ if (x != room_width + widthHalf + 50) {
 	
 	
 	if (!lookAtLeaderboard) {
-		draw_sprite(sTitle,0,x,y-40);
-	} else {
-		
+		var _titleY = -36;
+		draw_sprite(sTitle,0,x,y+_titleY);
+		draw_set_color(merge_color(#FF2055, c_white, titlePulse[0]*0.8));
+		DrawPolygon(x - 74, y+_titleY-15, lerp(18, 24, titlePulse[0]), 3, 90);
+		draw_set_color(merge_color(#38df88, c_white, titlePulse[1]*0.8));
+		DrawPolygon(x + 18, y+_titleY+20, lerp(18, 24, titlePulse[1]), 4, 45);
 	}
-	
 }
