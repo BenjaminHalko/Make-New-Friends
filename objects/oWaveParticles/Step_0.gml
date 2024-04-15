@@ -22,7 +22,7 @@ if (particleCount < 200 - 100 * BROWSER and --timer < 0) {
 	var _data = {
 		x: random_range(oInputCircle.x, room_width*1.4),
 		y: room_height * 2,
-		percent: 0
+		percent: 0.35
 	};
 	with (_data) {
 		WaveSetup(oInputCircle.x, room_width*1.4, oInputCircle.y-oShapeSummoner.y-oShapeSummoner.x/2, oInputCircle.x);

@@ -2,7 +2,7 @@
 
 EnableLive;
 
-if (global.title and !hasShape) {
+if (global.title and !hasShape and oTitle.y > room_height/2+oGUI.guiY/2-room_height) {
 	SummonShape();
 	global.currentShape.sides = 5;
 	global.currentShape.color = #FF2055;

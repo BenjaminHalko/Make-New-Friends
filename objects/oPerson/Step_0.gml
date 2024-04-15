@@ -28,7 +28,7 @@ if (_beat >= targetBeat) {
 		PersonDestroy();	
 		oGUI.evilPulse = 1;
 		global.lives--;
-		oGUI.heartScale[global.lives div 4] = 1.4;
+		oGUI.heartScale[global.lives div 2] = 1.4;
 		if (global.lives <= 0)
 			GameOver();
 	} else {

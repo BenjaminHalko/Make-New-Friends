@@ -1,5 +1,5 @@
-global.lives = 12;
-global.friendsNeeded = 0;
+global.lives = 6;
+global.friendsNeeded = 1;
 global.friendsMade = 0;
 global.offBeatChance = array_create(2, 0);
 global.inGame = false;
@@ -10,7 +10,7 @@ function RoundStart() {
 	global.inGame = true;
 }
 
-function RoundEnd() {
+function RoundEnd(_addScore=true) {
 	global.inGame = false;
 	with(oPerson) {
 		PersonDestroy(15);
@@ -19,9 +19,19 @@ function RoundEnd() {
 	with(oShapeSummoner) {
 		hasShape = false;
 	}
+	if (global.lives != 6) {
+		global.lives++;
+		oGUI.addedHeart = true;
+	} else
+		oGUI.addedHeart = false;
+	if (_addScore) {
+		global.score += 100 * global.friendsNeeded;
+		global.round++;
+	}
 }
 
 function GameOver() {
+	GotoLeaderboard();
 	global.inGame = false;
 	global.gameOver = true;
 	with(oShapeSummoner) {
@@ -37,7 +47,6 @@ function GameOver() {
 }
 
 function NextRound() {
-	global.round++;
 	oGUI.alarm[0] = 1;
 	oGUI.roundComplete = false;
 	global.friendsMade = 0;
@@ -47,8 +56,8 @@ function NextRound() {
 function ToGame() {
 	global.title = false;
 	global.gameOver = false;
-	global.lives = 12;
-	global.round = 0;
+	global.lives = 6;
+	global.round = 1;
 	global.score = 0;
 	with(oShapeSummoner) {
 		if (hasShape) {
@@ -60,13 +69,13 @@ function ToGame() {
 }
 
 function ToTitle() {
-	RoundEnd();
-	global.friendsNeeded = 1;
-	global.friendsMade = 0;
-	global.lives = 12;
+	RoundEnd(false);
+	global.lives = 6;
 	global.title = true;
 	global.gameOver = false;
 	ChangeBPM(130);
 	oGUI.alarm[0] = -1;
 	oGUI.startNum = 0;
+	oGUI.roundComplete = false;
+	oTitle.lookAtLeaderboard = false;
 }

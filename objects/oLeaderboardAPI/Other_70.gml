@@ -35,8 +35,7 @@ if (async_load[? "type"] == "FirebaseRealTime_Read" or async_load[? "type"] == "
 			});
 			
 			global.highscore = scores[0].points;
-			
-			
+			SetLeaderboardPosition();
 		}
 	}
 }

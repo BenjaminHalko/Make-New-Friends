@@ -11,7 +11,7 @@ if (global.audioTick and global.audioBeat % 4 == 0) {
 if (global.audioTick) {
 	var _create = false;
 	if (global.score > 300) {
-		if (global.audioBeat % 2 == 0 or (global.offBeatChance[global.audioBeat % 4 != 1] != 0 and irandom(global.offBeatChance[global.audioBeat % 4 != 1]-1) == 0))
+		if (global.audioBeat % 2 == 0 or (global.audioBeat % 2 == 0 and (global.secondBeatChance == 0 or ((global.secondBeatChance < 1 ? irandom(1/global.secondBeatChance) == 0 : irandom(global.secondBeatChance) != 0)))) or (global.audioBeat % 2 == 1 and global.offBeatChance[global.audioBeat % 4 != 1] != 0 and irandom(global.offBeatChance[global.audioBeat % 4 != 1]-1) == 0))
 			_create = true;
 	} else {
 		if (global.audioBeat % 4 == 0 or (global.audioBeat % 2 == 0 and global.score > 0 and irandom(2 - global.score / 100) == 0))

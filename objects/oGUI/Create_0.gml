@@ -12,3 +12,4 @@ startNum = 0;
 
 roundComplete = false;
 heartScale = array_create(3,1);
+addedHeart = false;

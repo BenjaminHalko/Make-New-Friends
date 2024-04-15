@@ -1,7 +1,20 @@
 /// @desc 
 
-if (global.title) {
-	draw_set_font(fLarge);
+EnableLive;
+
+if (x != room_width + widthHalf + 50) {
+	draw_set_color(c_black);
+	draw_set_alpha(0.8);
+	draw_roundrect(x-widthHalf, y-heightHalf, x+widthHalf, y+heightHalf, false);
+	draw_set_alpha(1);
 	draw_set_color(c_white);
-	draw_text(room_width/4*3, room_height/2, "TITLE GOES HERE!");	
+	draw_roundrect(x-widthHalf, y-heightHalf, x+widthHalf, y+heightHalf, true);
+	
+	
+	if (!lookAtLeaderboard) {
+		draw_sprite(sTitle,0,x,y-40);
+	} else {
+		
+	}
+	
 }

@@ -4,11 +4,12 @@ function RoundConfig() {
 		case 1:
 			global.friendsNeeded = 10;
 			global.offBeatChance = [0, 0];
+			global.secondBeatChance = 0.5;
 			break;
 		
 		default:
-			global.friendsNeeded = 10;
-			global.offBeatChance = [4, 4];
+			global.friendsNeeded = 20;
+			global.secondBeatChance = 0.75;
 			break;
 	}
 	

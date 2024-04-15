@@ -23,7 +23,15 @@ global.shapeProperties = [
 
 global.currentShape = new ShapeProperties(4, c_white);
 
-global.render = true;
+// Load Save Data
+ini_open(SAVEFILE);
+global.username = ini_read_string("settings","username","Testing Guy");
+global.audioVol = ini_read_real("settings","vol",0.7);
+global.pb =  ini_read_real("score","score",0);
+global.render = ini_read_real("settings","render",true);
+ini_close();
+
+audio_master_gain(global.audioVol);
 
 instance_create_depth(0,0,0,oLeaderboardAPI);
 

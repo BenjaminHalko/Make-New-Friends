@@ -26,27 +26,29 @@ else {
 }
 
 if (!_lastPressed and isPressed) {
-	locked = false;
-	pulse = 1;
-	rotationTarget += 5;
+	if (!_hasColor or global.currentShape.color != global.shapeProperties[index].color) or (!_hasSides and global.currentShape.sides != global.shapeProperties[index].sides) {
+		locked = false;
+		pulse = 1;
+		rotationTarget += 5;
 	
-	SummonShape();
+		SummonShape();
 	
-	if (_hasColor)
-		global.currentShape.color = global.shapeProperties[index].color;
-	if (_hasSides)
-		global.currentShape.sides = global.shapeProperties[index].sides;
+		if (_hasColor)
+			global.currentShape.color = global.shapeProperties[index].color;
+		if (_hasSides)
+			global.currentShape.sides = global.shapeProperties[index].sides;
 	
-	with(oInputDisplay) {
-		if (id == other.id) continue;
-		if ((_hasColor and !is_undefined(global.shapeProperties[index].color))
-			or (_hasSides and !is_undefined(global.shapeProperties[index].sides))) {
-				locked = true;	
-			}
-	}
+		with(oInputDisplay) {
+			if (id == other.id) continue;
+			if ((_hasColor and !is_undefined(global.shapeProperties[index].color))
+				or (_hasSides and !is_undefined(global.shapeProperties[index].sides))) {
+					locked = true;	
+				}
+		}
 	
-	if (_hasSides) {
-		PulseShape(shapeX, shapeY, global.shapeProperties[index].sides, (shapeSize + 8) * 0.5, rotation + 100, _hasColor ? global.shapeProperties[index].color : c_white);
+		if (_hasSides) {
+			PulseShape(shapeX, shapeY, global.shapeProperties[index].sides, (shapeSize + 8) * 0.5, rotation + 100, _hasColor ? global.shapeProperties[index].color : c_white);
+		}
 	}
 }
 
