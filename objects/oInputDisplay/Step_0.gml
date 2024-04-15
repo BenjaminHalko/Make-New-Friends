@@ -6,19 +6,23 @@ var _hasColor = !is_undefined(global.shapeProperties[index].color);
 var _hasSides = !is_undefined(global.shapeProperties[index].sides);
 
 var _lastPressed = isPressed;
-switch(index) {
-	default:
-		isPressed = keyRight;
-		break;
-	case 1:
-		isPressed = keyUp;
-		break;
-	case 2:
-		isPressed = keyLeft;
-		break;
-	case 3:
-		isPressed = keyDown;
-		break;
+if (!global.inGame)
+	isPressed = false;
+else {
+	switch(index) {
+		default:
+			isPressed = keyRight;
+			break;
+		case 1:
+			isPressed = keyUp;
+			break;
+		case 2:
+			isPressed = keyLeft;
+			break;
+		case 3:
+			isPressed = keyDown;
+			break;
+	}
 }
 
 if (!_lastPressed and isPressed) {

@@ -7,5 +7,3 @@ radius = oShapeSummoner.shapeRadius * 56;
 angle = oShapeSummoner.shapeAngle;
 faceAlpha = 1;
 faceAngle = oShapeSummoner.faceAngle;
-
-wait = 5;
