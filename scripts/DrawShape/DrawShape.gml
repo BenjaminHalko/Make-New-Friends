@@ -57,7 +57,9 @@ function DrawPolygon(_x, _y, _size, _sides, _angle) {
 
 function DrawOutline(_x, _y, _radius, _sides, _angle) {
 	var _oneAngle = 360 / _sides;
-	var _offset = -(0.5-(!BROWSER)*0.5)*(!OPERA);
+	var _offset = 0;
+	if (BROWSER) _offset = -0.5;
+	else if (os_type == os_windows) _offset = -1;
 	for(var i = 0; i < _sides; i++) {
 		draw_line(
 			_x + lengthdir_x(_radius, _angle+_oneAngle*i)+_offset,
