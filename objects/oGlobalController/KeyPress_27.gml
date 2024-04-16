@@ -7,6 +7,7 @@ if (global.title) {
 	} else if (DESKTOP)
 		game_end();
 } else {
-	LeaderboardPost();
+	if (global.score != 0)
+		LeaderboardPost();
 	ToTitle();	
 }
