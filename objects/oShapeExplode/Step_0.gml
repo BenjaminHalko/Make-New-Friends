@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 if (--wait <= 0) {
 	image_alpha -= 0.2;
 	faceAlpha -= 0.15;

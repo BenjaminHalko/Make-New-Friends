@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 var _beat = global.audioPos;
 if (_beat < startBeat) {
 	_beat += global.maxBeats;
@@ -25,16 +23,19 @@ if (_beat >= targetBeat) {
 				global.currentShape.color = c_white;
 			}
 		}
-		PersonDestroy();
+		
 		oGUI.evilPulse = 1;
-		/*
 		global.lives--;
 		oGUI.heartScale[global.lives div 2] = 1.4;
 		if (global.lives <= 0) {
 			oTitle.diedTo = name;
 			GameOver();
+			PersonDestroy(120);
+			audio_play_sound(snLargeExplosion, 1, false);	
+		} else {
+			PersonDestroy();
+			audio_play_sound(snSmallExplosion, 1, false,1,0,0.7+properties.sides*0.1);	
 		}
-		*/
 	} else {
 		oShapeAbsorb.friendRotation = angle;	
 	}

@@ -2,12 +2,14 @@ global.lives = 6;
 global.friendsNeeded = 1;
 global.friendsMade = 0;
 global.offBeatChance = array_create(2, 0);
+global.startOffset = 0;
+global.beatOffset = 6;
 global.inGame = false;
 global.title = true;
 global.gameOver = false;
 
 function RoundStart() {
-	global.inGame = true;
+	global.inGame = true;	
 }
 
 function RoundEnd(_addScore=true) {
@@ -19,18 +21,20 @@ function RoundEnd(_addScore=true) {
 	with(oShapeSummoner) {
 		hasShape = false;
 	}
-	if (global.lives != 6) {
-		global.lives++;
+	if (global.lives != MaxHealth) {
+		global.lives += 0.5;
 		oGUI.addedHeart = true;
 	} else
 		oGUI.addedHeart = false;
 	if (_addScore) {
 		global.score += 100 * global.friendsNeeded;
 		global.round++;
+		audio_play_sound(snRoundComplete, 1, false);
 	}
 }
 
 function GameOver() {
+	LeaderboardPost();
 	GotoLeaderboard();
 	global.inGame = false;
 	global.gameOver = true;
@@ -47,8 +51,10 @@ function GameOver() {
 }
 
 function NextRound() {
+	audio_play_sound(snStart, 1, false);
 	oGUI.alarm[0] = 1;
 	oGUI.roundComplete = false;
+	oWaveController.created = 0;
 	global.friendsMade = 0;
 	RoundConfig();
 }
@@ -56,7 +62,7 @@ function NextRound() {
 function ToGame() {
 	global.title = false;
 	global.gameOver = false;
-	global.lives = 6;
+	global.lives = MaxHealth;
 	global.round = 1;
 	global.score = 0;
 	with(oShapeSummoner) {
@@ -65,12 +71,13 @@ function ToGame() {
 			hasShape = false;
 		}
 	}
+	global.currentShape = new ShapeProperties(0, c_white);
 	NextRound()
 }
 
 function ToTitle() {
 	RoundEnd(false);
-	global.lives = 6;
+	global.lives = MaxHealth;
 	global.title = true;
 	global.gameOver = false;
 	ChangeBPM(130);

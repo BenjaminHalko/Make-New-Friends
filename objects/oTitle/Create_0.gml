@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 ToTitle();
 
 widthHalf = 130;

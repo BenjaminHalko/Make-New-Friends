@@ -1,9 +1,8 @@
 function SummonShape() {
-	EnableLive;
 	with(oShapeSummoner) {
 		if (hasShape and shapeRadius > 0.8) {
 			instance_create_depth(x,y,depth-1,oShapeExplode, {wait: 0});
-			instance_create_layer(x+48,y-8,"GUI",oPoints,{points: -50});
+			instance_create_layer(x+48,y-8,"GUI",oPoints,{points: -200});
 		}
 		shapeRadius = 0;
 		hasShape = true;
@@ -18,6 +17,7 @@ function SummonShape() {
 			points = round(min(100, ValuePercent(global.audioPos, _nextBeat, lerp(max(_nextBeat-3, lastShapeBeat), _nextBeat, 0.25)) * 100));
 		}
 	}
+	audio_play_sound(snSummon,1,false);
 }
 
 enum FACE {

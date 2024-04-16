@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 draw_set_color(c_white);
 
 for(var i = 0; i < particleCount; i++) {

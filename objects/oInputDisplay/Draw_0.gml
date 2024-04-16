@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 var _showColor = !is_undefined(global.shapeProperties[index].color);
 var _blend = _showColor ? global.shapeProperties[index].color : c_white;
 if (pressedPercent != 0) {

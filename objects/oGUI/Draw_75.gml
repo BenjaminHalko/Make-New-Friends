@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 draw_set_font(fNormal);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
@@ -51,7 +49,7 @@ if (startNum % 2 == 1) {
 if (roundComplete) {
 	draw_set_font(fLarge);
 	draw_set_valign(fa_middle);
-	draw_text(room_width/2+45, room_height/2-30-8*addedHeart, $"ROUND {global.round} COMPLETE!");
+	draw_text(room_width/2+45, room_height/2-30-8*addedHeart, $"ROUND {global.round-1} COMPLETE!");
 	draw_set_font(fNormal);
 	if (addedHeart) {
 		draw_text(room_width/2+45, room_height/2-25, $"+{global.friendsNeeded*100} POINTS");

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.131542,
+  "duration":0.119524,
   "name":"snBlip",
   "parent":{
     "name":"~Audio",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snBlip.wav",
   "type":0,
-  "volume":0.1,
+  "volume":0.5,
 }

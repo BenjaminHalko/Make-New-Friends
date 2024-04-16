@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 if (x != room_width + widthHalf + 50) {
 	if (!lookAtLeaderboard) {
 		draw_set_font(fLarge);
@@ -53,15 +51,17 @@ if (x != room_width + widthHalf + 50) {
 		
 		if (heightHalf != 80) {
 			draw_text(x,_y,"GAME OVER!");
-			draw_set_font(fNormal);
-			draw_text(x,_y+8,$"You were killed by {diedTo}");
-			draw_set_font(fLarge);
+			if (global.showLeaderboardNames) {
+				draw_set_font(fNormal);
+				draw_text(x,_y+8,$"You were killed by {diedTo}");
+				draw_set_font(fLarge);
+			}
 			_y += 28;
 		}
 	
 		draw_text(_x+12, _y, "PLACE");
 		draw_text(_x+84, _y, "NAME");
-		draw_text(_x+156, _y, "SCORE");
+		draw_text(_x+162, _y, "SCORE");
 		draw_text(_x+212, _y, "ROUND");
 	
 		draw_set_halign(fa_left);
@@ -79,7 +79,7 @@ if (x != room_width + widthHalf + 50) {
 		
 			draw_text(_x-8, _scoreY, _place);
 			draw_text(_x+44, _scoreY, oLeaderboardAPI.scores[i].name);
-			draw_text(_x+136, _scoreY, oLeaderboardAPI.scores[i].points);
+			draw_text(_x+142, _scoreY, oLeaderboardAPI.scores[i].points);
 			draw_text(_x+208, _scoreY, oLeaderboardAPI.scores[i].level);
 		}
 		draw_set_alpha(1);

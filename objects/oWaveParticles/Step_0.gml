@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 for(var i = 0; i < particleCount; i++) {
 	with(particles[i]) {
 		percent += 0.005;

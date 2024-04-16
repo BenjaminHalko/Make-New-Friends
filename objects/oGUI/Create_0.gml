@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 guiY = 230;
 evilPulse = 0;
 

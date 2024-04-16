@@ -1,7 +1,5 @@
 /// @desc Input
 
-EnableLive;
-
 ScaleCanvas();
 
 keyLeft = keyboard_check(vk_left) or keyboard_check(ord("A"));

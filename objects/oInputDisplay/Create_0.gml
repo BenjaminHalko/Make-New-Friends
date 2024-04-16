@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 shapeSize = 28;
 
 var _margin = 4;

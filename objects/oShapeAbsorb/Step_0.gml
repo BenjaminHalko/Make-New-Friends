@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 if (foundFriend) {
 	spd = ApproachFade(spd, 10, 1, 0.8);
 	shapeX -= spd;
@@ -18,6 +16,7 @@ if (foundFriend) {
 			oGUI.roundComplete = true;
 		}
 		foundFriend = true;
+		audio_play_sound(snFriend,1,false,1,0,0.8+properties.sides*0.2);
 		exit
 	}
 

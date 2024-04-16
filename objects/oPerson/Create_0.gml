@@ -1,14 +1,17 @@
 /// @desc 
 
-EnableLive;
-
 name = PickName();
 properties = new ShapeProperties();
 
 while(is_undefined(properties.color) and is_undefined(properties.sides)) {
 	var i = irandom(3);
-	if (global.round == 1)
-		i = choose(1,3);
+	if (global.round == 1) {
+		if (oWaveController.created % 12 > 6) {
+			i = choose(1,3);
+		} else {
+			i = choose(0,2);	
+		}
+	}
 	var _p = global.shapeProperties[i];
 	if (!is_undefined(_p.color))
 		properties.color = _p.color;

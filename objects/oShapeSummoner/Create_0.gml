@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 image_yscale = 1.2;
 pulse = 0;
 

@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 var _hasColor = !is_undefined(global.shapeProperties[index].color);
 var _hasSides = !is_undefined(global.shapeProperties[index].sides);
 
@@ -40,7 +38,7 @@ if (!_lastPressed and isPressed) {
 	
 		with(oShapeSummoner) {
 			repeat(20) {
-				with(instance_create_depth(x,y,depth-1,oTriangleParticle)) {
+				with(instance_create_depth(x,y,depth-1,oParticle)) {
 					radius = 14;
 					direction = random(360);
 					image_angle = random(360);

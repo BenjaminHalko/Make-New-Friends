@@ -1,7 +1,5 @@
 /// @desc Setup game
 
-instance_create_depth(0,0,0,obj_gmlive);
-
 getOsType();
 
 surface_resize(application_surface, RESW, RESH);
@@ -15,13 +13,13 @@ globalvar keyDown; keyDown = false;
 globalvar keyConfirm; keyConfirm = false;
 
 global.shapeProperties = [
-	new ShapeProperties(6, c_lime),
-	new ShapeProperties(3, c_aqua),
-	new ShapeProperties(5, c_red),
-	new ShapeProperties(4, c_yellow),
+	new ShapeProperties(3, #FF2055),
+	new ShapeProperties(6, #ffee38),
+	new ShapeProperties(5, #2055FF),
+	new ShapeProperties(4, #38df88),
 ];
 
-global.currentShape = new ShapeProperties(4, c_white);
+global.currentShape = new ShapeProperties(0, c_white);
 
 // Load Save Data
 ini_open(SAVEFILE);
@@ -32,6 +30,7 @@ global.render = ini_read_real("settings","render",true);
 ini_close();
 
 audio_master_gain(global.audioVol);
+global.showLeaderboardNames = true;
 
 instance_create_depth(0,0,0,oLeaderboardAPI);
 

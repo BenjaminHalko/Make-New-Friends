@@ -15,5 +15,5 @@ global.round = 1;
 global.highscore = 0;
 global.leaderboardPos = -1;
 
-LeaderboardGet();
+//LeaderboardGet();
 listener = FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path("/").Listener();

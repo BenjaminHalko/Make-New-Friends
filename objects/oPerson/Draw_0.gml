@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 DrawShape(x,y,32,properties,angle);
 
 draw_set_font(fSmall);

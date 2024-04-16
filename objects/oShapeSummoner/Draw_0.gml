@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 draw_sprite_ext(sShapeCreatorStrip,0,x,0,1,room_height,0,oGUI.image_blend,1);
 draw_self();
 

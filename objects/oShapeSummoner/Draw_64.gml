@@ -1,7 +1,5 @@
 /// @desc 
 
-EnableLive;
-
 if (hasShape and !instance_exists(oShapeExplode)) {
 	var _x = shapeX + random_range(-2,2) * worried;
 	var _y = shapeY + random_range(-2,2) * worried;

@@ -1,8 +1,6 @@
 /// @desc 
 
-EnableLive;
-
-introX = ApproachFade(introX, lerp(room_width + widthHalf + 50, room_width/2+45, global.title or global.gameOver), 50, 0.8);
+introX = ApproachFade(introX, lerp(room_width + widthHalf + 50, room_width/2+45, (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1)), 50, 0.8);
 introY = ApproachFade(introY, room_height/2+(oGUI.guiY-room_height)/2, 20, 0.7);
 
 x = round(introX);
@@ -14,7 +12,7 @@ else if (global.title)
 	heightHalf = 80;
 
 // INPUT
-if (global.title or global.gameOver) {
+if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 	if (!lookAtLeaderboard) {
 		if (global.audioTick) {
 			titlePulse[global.audioBeat % 2] = 1;	
