@@ -17,17 +17,16 @@ if (foundFriend) {
 		}
 		foundFriend = true;
 		audio_play_sound(snFriend,1,false,1,0,0.8+properties.sides*0.2);
-		exit
+	} else {
+		percent = min(1,(frac(global.audioPos)-startPercent) / (1-startPercent));
+		if (global.audioPos >= targetBeat or global.audioPos < startBeat)
+			percent = 1;
+
+		shapePulse = ApproachFade(shapePulse, 0, 0.1, 0.8);
+		shapeRadius = Approach(shapeRadius, 1, 0.7);
+		faceAngle = ApproachFade(faceAngle, faceAngleTarget * (faceAngleTarget == -360), 50, 0.7);
+
+		shapeX = lerp(x, personID.x-friendOffsetX, percent);
+		shapeY = lerp(y, personID.y-friendOffsetY, percent);
 	}
-
-	percent = (frac(global.audioPos)-startPercent) / (1-startPercent);
-	if (global.audioPos >= targetBeat or global.audioPos < startBeat)
-		percent = 0;
-
-	shapePulse = ApproachFade(shapePulse, 0, 0.1, 0.8);
-	shapeRadius = Approach(shapeRadius, 1, 0.7);
-	faceAngle = ApproachFade(faceAngle, faceAngleTarget * (faceAngleTarget == -360), 50, 0.7);
-
-	shapeX = lerp(x, personID.x-friendOffsetX, percent);
-	shapeY = lerp(y, personID.y-friendOffsetY, percent);
 }

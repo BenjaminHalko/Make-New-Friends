@@ -16,7 +16,7 @@ for(var i = 0; i < particleCount; i++) {
 	}
 }
 
-if (particleCount < 200 - 100 * BROWSER and --timer < 0) {
+if (particleCount < 200 - 150 * BROWSER and --timer < 0) {
 	var _data = {
 		x: random_range(oInputCircle.x, room_width*1.4),
 		y: room_height * 2,
@@ -28,5 +28,5 @@ if (particleCount < 200 - 100 * BROWSER and --timer < 0) {
 	array_push(particles, _data);
 	particleCount++;
 	if (BROWSER)
-		timer = 1;
+		timer = 3;
 }

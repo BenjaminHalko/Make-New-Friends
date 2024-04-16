@@ -43,7 +43,7 @@ if (_beat >= targetBeat) {
 	instance_destroy();
 }
 
-if (irandom(1) == 0) {
+if (irandom(1+BROWSER*2) == 0) {
 	var _pulse = PulseShape(x+random_range(-12,12),y+random_range(-12,12),properties.sides,4,angle,properties.color);
 	_pulse.depth = depth + 1;
 }
