@@ -53,7 +53,7 @@ if (x != room_width + widthHalf + 50) {
 			draw_text(x,_y,"GAME OVER!");
 			if (global.showLeaderboardNames) {
 				draw_set_font(fNormal);
-				draw_text(x,_y+8,$"You were killed by {diedTo}");
+				draw_text(x,_y+8,$"You failed to find a friend for {diedTo}");
 				draw_set_font(fLarge);
 			}
 			_y += 28;
