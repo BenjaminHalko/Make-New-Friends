@@ -57,12 +57,13 @@ function DrawPolygon(_x, _y, _size, _sides, _angle) {
 
 function DrawOutline(_x, _y, _radius, _sides, _angle) {
 	var _oneAngle = 360 / _sides;
+	var _offset = -(0.5-(!BROWSER)*0.5)*(!OPERA);
 	for(var i = 0; i < _sides; i++) {
 		draw_line(
-			_x + lengthdir_x(_radius, _angle+_oneAngle*i)-0.5-(!BROWSER)*0.5,
-			_y + lengthdir_y(_radius, _angle+_oneAngle*i)-0.5-(!BROWSER)*0.5,
-			_x + lengthdir_x(_radius, _angle+_oneAngle*(i+1))-0.5-(!BROWSER)*0.5,
-			_y + lengthdir_y(_radius, _angle+_oneAngle*(i+1))-0.5-(!BROWSER)*0.5
+			_x + lengthdir_x(_radius, _angle+_oneAngle*i)+_offset,
+			_y + lengthdir_y(_radius, _angle+_oneAngle*i)+_offset,
+			_x + lengthdir_x(_radius, _angle+_oneAngle*(i+1))+_offset,
+			_y + lengthdir_y(_radius, _angle+_oneAngle*(i+1))+_offset
 		);
 	}
 }

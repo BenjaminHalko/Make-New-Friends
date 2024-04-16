@@ -4,7 +4,7 @@ if (global.title) {
 	if (oTitle.lookAtLeaderboard) {
 		audio_play_sound(snBlip, 1, false);
 		oTitle.lookAtLeaderboard = false;
-	} else if (!BROWSER)
+	} else if (DESKTOP)
 		game_end();
 } else {
 	LeaderboardPost();
