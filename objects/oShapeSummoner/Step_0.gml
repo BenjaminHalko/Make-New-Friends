@@ -42,8 +42,8 @@ var _percent = (frac(global.audioPos)-0.7) * 10/3;
 if (!instance_exists(oShapeAbsorb) and _percent >= 0) {
 	if (!instance_exists(personID)) {
 		with(oPerson) {
-			if (normalizedTargetBeat == ceil(global.audioPos)) {
-				other.personID = id;	
+			if (normalizedTargetBeat == ceil(((global.audioPos+1) % global.maxBeats)-1)) {
+				other.personID = id;
 			}
 		}
 	}
