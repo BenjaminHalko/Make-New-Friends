@@ -69,10 +69,19 @@ exit /b 0
 :: Resolves a relative path if required
 :pathResolve basePath relativePath result
 
-    :: Need to enabled delayed expansion
+    :: Need to enable delayed expansion
     setlocal enabledelayedexpansion
 
-    for /f "delims=" %%i in ('powershell -Command "Push-Location '%~1'; $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath('%~2'); Pop-Location;"') do set "result=%%i"
+    :: Set environment variables for basePath and relativePath
+    set "PS_BASEPATH=%~1"
+    set "PS_RELATIVEPATH=%~2"
+
+    for /f "delims=" %%i in ('powershell -Command "$basePath = $env:PS_BASEPATH; $relativePath = $env:PS_RELATIVEPATH; Push-Location $basePath; $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($relativePath); Pop-Location;"') do set "result=%%i"
+
+    :: Clean up environment variables
+    set "PS_BASEPATH="
+    set "PS_RELATIVEPATH="
+
     call :logInformation "Resolved relative path into '%result%'."
 
     :: Need to end local (to push into main scope)
@@ -96,52 +105,36 @@ exit /b 0
     endlocal
 exit /b 0
 
-:: Copies a file or folder to the specified destination folder (displays log messages)
-:itemCopyTo srcPath destFolder
+:: Copies a file, folder, or files based on a pattern to a specified destination folder
+:itemCopyTo srcPathOrPattern destFolder
     if not exist "%~1" (
         call :logError "Failed to copy '%~1' to '%~2' (source doesn't exist)."
         exit /b 1
     )
 
-    :: Check if the source is a file
-    if not exist "%~1\*" (
-        :: Source is a file
-        call :copyFileToDestination "%~1" "%~2"
+    call :pathResolve "%cd%" "%~2" destination
+
+    :: Create destination folder if it doesn't exist
+    if not exist "%~2" (
+        mkdir "%destination%"
+    )
+
+    :: Determine if source is a directory, file, or pattern and copy accordingly
+    if exist "%~1\" (
+        xcopy /E /Y "%~1" "%destination%\"
     ) else (
-        :: Source is a folder
-        call :copyFolderContents "%~1" "%~2"
+        for %%f in (%~1) do (
+            copy /Y "%%f" "%destination%\"
+        )
     )
 
     :: Check if the copy operation succeeded
     if %errorlevel% neq 0 (
-        call :logError "Failed to copy '%~1' to '%~2'."
+        call :logError "Failed to copy '%~1' to '%destination%'."
         exit /b 1
     )
 
-    call :logInformation "Copied '%~1' to '%~2'."
-exit /b 0
-
-:copyFolderContents srcFolder destFolder
-    if not exist "%~2" (
-        mkdir "%~2"
-    )
-    xcopy "%~1\*.*" "%~2" /E /I /Y
-exit /b 0
-
-:copyFileToDestination srcFile destPath
-    set "destDir=%~dp2"
-    set "destFile=%~nx2"
-    
-    if "%~x2"=="" (
-        :: Destination is a folder
-        set "destFile=%~nx1"
-    )
-    
-    if not exist "%destDir%" (
-        mkdir "%destDir%"
-    )
-    
-    copy /Y "%~1" "%destDir%\%destFile%"
+    call :logInformation "Copied '%~1' to '%destination%'."
 exit /b 0
 
 :: Deletes a file or folder at the specified path (displays log messages)
@@ -149,17 +142,19 @@ exit /b 0
 
     call :pathResolve "%cd%" "%~1" target
 
-    if exist "%~1\." (
-        :: Is a folder
-        powershell -NoLogo -NoProfile -Command "Remove-Item -Path '%~1' -Recurse -Force"
-    ) else if exist "%~1" (
-        :: Is a file
-        powershell -NoLogo -NoProfile -Command "Remove-Item -Path '%~1' -Force"
-    ) else (
+    if not exist "%~1" (
         call :logWarning "Path '%target%' does not exist. Skipping deletion."
         exit /b 0
     )
 
+    IF exist "%target%\" (
+        rd /s /q "%target%"
+        call :logInformation "Folder '%target%' deleted."
+    ) ELSE (
+        del /f /q "%target%"
+        call :logInformation "File '%target%' deleted."
+    )
+    
     :: Check if the deletion operation succeeded
     if %errorlevel% neq 0 (
         call :logError "Failed to delete '%target%'."
@@ -171,14 +166,31 @@ exit /b 0
 
 :: Generates the SHA256 hash of a file and stores it into a variable (displays log messages)
 :fileGetHash filepath result
-    for /f "usebackq delims=" %%i in (`powershell -Command "(Get-FileHash -Path '%~1' -Algorithm SHA256).Hash"`) do set "%~2=%%i"
+
+    :: Set environment variables for target
+    set "PS_FILEPATH=%~1"
+
+    for /f "usebackq delims=" %%i in (`powershell -Command "(Get-FileHash -Path $env:PS_FILEPATH -Algorithm SHA256).Hash"`) do set "%~2=%%i"
+
+    :: Clean up environment variables
+    set "PS_FILEPATH="
+
     call :logInformation "Generated SHA256 hash of '%~1'."
 exit /b 0
 
 :: Extracts the contents of a zip file to the specified destination folder (displays log messages)
 :fileExtract srcFile destFolder
-    powershell -Command "if (!(Test-Path '%~2')) { New-Item -ItemType Directory -Path '%~2' }"
-    powershell -Command "$ErrorActionPreference = 'Stop'; Expand-Archive -Path '%~1' -DestinationPath '%~2'"
+
+    :: Set environment variables for target
+    set "PS_SRCFILE=%~1"
+    set "PS_DESTFOLDER=%~2"
+
+    powershell -Command "if (!(Test-Path $env:PS_DESTFOLDER)) { New-Item -ItemType Directory -Path $env:PS_DESTFOLDER }"
+    powershell -Command "$ErrorActionPreference = 'Stop'; Expand-Archive -Path $env:PS_SRCFILE -DestinationPath $env:PS_DESTFOLDER"
+
+    :: Clean up environment variables
+    set "PS_SRCFILE="
+    set "PS_DESTFOLDER="
 
     :: Check if the extraction operation succeeded
     if %errorlevel% neq 0 (
@@ -191,13 +203,22 @@ exit /b 0
 
 :: Compresses the contents of a folder into a zip file (displays log messages)
 :folderCompress srcFolder destFile
-    powershell -Command "Compress-Archive -Path '%~1\*' -DestinationPath '%~2'" -Force
+
+    :: Set environment variables for target
+    set "PS_SRCFOLDER=%~1"
+    set "PS_DESTFILE=%~2"
+
+    powershell -Command "Compress-Archive -Path $env:PS_SRCFOLDER\* -DestinationPath $env:PS_DESTFILE -Force"
 
     :: Check if the compression operation succeeded
     if %errorlevel% neq 0 (
         call :logError "Failed to compress contents of '%~1' into '%~2'."
         exit /b 1
     )
+
+    :: Clean up environment variables
+    set "PS_SRCFOLDER="
+    set "PS_DESTFILE="
 
     call :logInformation "Compressed contents of '%~1' into '%~2'."
 exit /b 0

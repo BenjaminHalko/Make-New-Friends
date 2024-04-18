@@ -12,8 +12,9 @@ scriptInit() {
     EXTENSION_NAME=
 
     # Get extension data
-    pathExtractBase $SCRIPT_PATH EXTENSION_NAME
+    pathExtractBase "$SCRIPT_PATH" EXTENSION_NAME
     extensionGetVersion EXTENSION_VERSION
+
     if [ -z "$EXTENSION_VERSION" ]; then
         EXTENSION_VERSION="0.0.0"
     fi
@@ -43,13 +44,12 @@ extensionGetVersion() {
     set +f
 
     logInformation "Accessed extension version with value '${result}'."
-    eval "$1=\"\$result\""
+    printf -v "$1" "%s" "$result"
 }
 
 # Gets an extension option value
 # Usage: optionGetValue optionName result
 optionGetValue() {
-
     # Enable indirect variable reference
     set -f
     local var="YYEXTOPT_${EXTENSION_NAME}_$1"
@@ -57,26 +57,34 @@ optionGetValue() {
     set +f
 
     logInformation "Accessed extension option '${1}' with value '${result}'."
-    eval "$2=\"\$result\""
+    printf -v "$2" "%s" "$result"
 }
 
 # Sets a string to uppercase
 toUpper() { # str result
-    eval "$2=$(echo $1 | tr '[:lower:]' '[:upper:]')"
+    local _result
+    _result=$(echo "$1" | tr '[:lower:]' '[:upper:]')
+    printf -v "$2" "%s" "$_result"
     logInformation "Converted string '$1' to upper case."
 }
+
 
 # Extracts the full folder path from a filepath
 # Usage: pathExtractDirectory fullpath result
 pathExtractDirectory() {
-    eval "$2=\"$(dirname "$1")\""
+    local _result
+    _result="$(dirname "$1")"
+    printf -v "$2" "%s" "$_result"
     logInformation "Extracted directory path from '$1'."
 }
+
 
 # Extracts the parent folder from a path
 # Usage: pathExtractBase fullpath result
 pathExtractBase() {
-    eval "$2=\"$(basename $(dirname "$1"))\""
+    local _result
+    _result="$(basename "$(dirname "$1")")"
+    printf -v "$2" "%s" "$_result"
     logInformation "Extracted base name from '$1'."
 }
 
@@ -86,6 +94,8 @@ pathResolve() {
     local basePath="$1"
     local relativePath="$2"
     local resolvedPath=
+    local combined_path
+    local result=()
 
     # Ensure 'basePath' ends with a forward slash
     [[ "${basePath: -1}" != "/" ]] && basePath+="/"
@@ -102,7 +112,6 @@ pathResolve() {
     IFS="/" read -ra path_parts <<< "$combined_path"
 
     # Remove any entries that are "." and if an entry is "..", remove that entry and the previous one
-    result=()
     for part in "${path_parts[@]}"; do
         if [ "$part" == "." ] || [ -z "$part" ]; then
             continue
@@ -124,8 +133,9 @@ pathResolve() {
 
     # Return the merged result
     logInformation "Resolved path into '$resolvedPath'."
-    eval "$3=\"$resolvedPath\""
+    printf -v "$3" "%s" "$resolvedPath"
 }
+
 
 # Resolves an existing relative path if required (handles errors)
 # Usage: pathResolveExisting basePath relativePath result
@@ -151,27 +161,26 @@ itemCopyTo() {
     # Resolve the destination folder to an absolute path
     pathResolve "$PWD" "$destination" resolved_destination
 
-    # If 'resolved_destination' ends with a "/", ensure the path exists
-    if [[ "${resolved_destination: -1}" == "/" ]]; then
-        mkdir -p "$resolved_destination"
-    else
-        # Create all parent directories up until the destination path
-        parent_directory=$(dirname "$resolved_destination")
-        mkdir -p "$parent_directory"
-    fi
-
-    if [ -d "$source" ]; then
-        # Source is a folder
-        cp -rf "$source" "$resolved_destination"
-    elif [ -f "$source" ]; then
-        # Source is a file
-        cp -f "$source" "$resolved_destination"
-    else
-        logError "Failed to copy '$source' does not exist or is not accessible."
+    # Check if source exists
+    if [[ ! -e "$source" ]]; then
+        logError "Failed to copy '$source' to '$resolved_destination' (source doesn't exist)."
         exit 1
     fi
 
-    if [ $? -ne 0 ]; then
+    # Create the destination folder if it doesn't exist
+    mkdir -p "$resolved_destination"
+
+    # Copy the source to the destination
+    if [[ -d "$source" ]]; then
+        # Source is a directory
+        cp -r "$source"/* "$resolved_destination"
+    else
+        # Source is a file or pattern
+        cp "$source" "$resolved_destination"
+    fi
+
+    # Check if the copy operation succeeded
+    if [[ $? -ne 0 ]]; then
         logError "Failed to copy '$source' to '$resolved_destination'."
         exit 1
     fi

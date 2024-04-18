@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "271881104682",
+    "firebase_url": "https://ludum-dare-55-default-rtdb.firebaseio.com",
+    "project_id": "ludum-dare-55",
+    "storage_bucket": "ludum-dare-55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271881104682:android:ac084b68767d8d041d4253",
+        "android_client_info": {
+          "package_name": "com.benjaminhalko.makenewfriends"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwSI00HaHUmv8HHcWeKxckbL3X7K5mv3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
