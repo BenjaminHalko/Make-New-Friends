@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"TitleButton",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"TitleButton",
+  "parent":{
+    "name":"Menu",
+    "path":"folders/Menu.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -25,3 +25,10 @@ scoreOffset = 0;
 diedTo = "Me";
 
 titlePulse = [0, 0];
+
+buttonStart = new TitleButton(undefined, "START");
+buttonStart.y = 20;
+buttonLeaderboard = new TitleButton(undefined, "LEADERBOARD");
+buttonLeaderboard.y = 70;
+buttonUsername = new TitleButton(undefined, "CHANGE USERNAME");
+buttonUsername.y = 100;

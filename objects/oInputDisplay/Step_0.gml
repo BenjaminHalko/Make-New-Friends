@@ -21,6 +21,16 @@ else {
 			isPressed = keyDown;
 			break;
 	}
+	
+	if (MOBILE) {
+		for(var i = 0; i < 5; i++) {
+			var _x = device_mouse_x(i);
+			var _y = device_mouse_y(i);
+			if (point_in_rectangle(_x, _y, shapeX-18, shapeY-18, shapeX+18, shapeY+18) and device_mouse_check_button(i, mb_left)) {
+				isPressed = true;
+			}
+		}
+	}
 }
 
 if (!_lastPressed and isPressed) {

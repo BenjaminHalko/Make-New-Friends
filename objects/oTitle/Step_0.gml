@@ -14,86 +14,86 @@ else if (global.title)
 // INPUT
 if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 	if (!lookAtLeaderboard) {
-		if (global.audioTick) {
-			titlePulse[global.audioBeat % 2] = 1;	
-		}
+		if (!MOBILE and false) {
+			if (global.audioTick) {
+				titlePulse[global.audioBeat % 2] = 1;	
+			}
 		
-		titlePulse[0] = ApproachFade(titlePulse[0], 0, 0.1, 0.8);
-		titlePulse[1] = ApproachFade(titlePulse[1], 0, 0.1, 0.8);
+			titlePulse[0] = ApproachFade(titlePulse[0], 0, 0.1, 0.8);
+			titlePulse[1] = ApproachFade(titlePulse[1], 0, 0.1, 0.8);
 		
-		if (keyDown or keyUp) and (option != 2 or (!keyboard_check(ord("W")) and !keyboard_check(ord("S")))) {
-			if (acceptMenuInput) {
-				if (option == 2) {
-					var _usernameLength = string_length(global.username);
-					while(_usernameLength > 0 and string_char_at(global.username, _usernameLength) == " ") {
-						global.username = string_copy(global.username,0,_usernameLength-1);
-						_usernameLength = string_length(global.username);
-					}
+			if (keyDown or keyUp) and (option != 2 or (!keyboard_check(ord("W")) and !keyboard_check(ord("S")))) {
+				if (acceptMenuInput) {
+					if (option == 2) {
+						var _usernameLength = string_length(global.username);
+						while(_usernameLength > 0 and string_char_at(global.username, _usernameLength) == " ") {
+							global.username = string_copy(global.username,0,_usernameLength-1);
+							_usernameLength = string_length(global.username);
+						}
 					
-					Save("settings","username",global.username);
-					SetLeaderboardPosition();
-				}
-				option = Wrap(option + keyDown - keyUp, 0, 3);
-				if (option == 2) keyboard_string = global.username;
-				acceptMenuInput = false;
-				audio_play_sound(snBlip,2,false);
-			}
-		} else {
-			acceptMenuInput	= true;	
-		}
-	
-		if (option == 0 and keyConfirm) {
-			if (global.username != "") {
-				with(oMusicController) {
-					if !audio_is_playing(music) {
-						music = audio_play_sound(mMusic, 1, true);
+						Save("settings","username",global.username);
+						SetLeaderboardPosition();
 					}
-				}
-				ToGame();
-			} else {
-				usernameFlash = 1;
-				 audio_play_sound(snBlip,2,false);
-			}
-		}
-	
-		if (option == 1 and keyConfirm) {
-			GotoLeaderboard();
-			audio_play_sound(snBlip,2,false);
-		}
-	
-		if (option == 2) {
-			if (alarm[0] <= 0) alarm[0] = 30;
-			if keyboard_lastkey != vk_nokey {
-				if (keyboard_lastkey == vk_backspace or (ord(keyboard_lastchar) >= 32 and ord(keyboard_lastchar) <= 255)) and string_length(keyboard_string) <= 10 and (keyboard_lastkey != vk_space or string_length(global.username) > 0) {
-					if (OPERA and string_length(keyboard_string) > string_length(global.username)) {
-						var _char = string_char_at(keyboard_string, string_length(keyboard_string));
-						if (keyboard_check(vk_shift))
-							_char = string_upper(_char);
-						else
-							_char = string_lower(_char);
-						keyboard_string = string_copy(keyboard_string, 1, string_length(keyboard_string)-1) + _char;
-					}
-					global.username = keyboard_string;
-				}
-				else keyboard_string = global.username;
-				keyboard_lastkey = vk_nokey;
-			}
-		}
-	
-		if (option == 3) {
-			if (keyLeft or keyRight) {
-				if (volAcceptMenuInput) {
-					volAcceptMenuInput = false;
-					global.audioVol = clamp(global.audioVol + (keyRight - keyLeft) * 0.1, 0, 1);
-					Save("settings","vol",global.audioVol);
-					audio_master_gain(global.audioVol);
+					option = Wrap(option + keyDown - keyUp, 0, 3);
+					if (option == 2) keyboard_string = global.username;
+					acceptMenuInput = false;
 					audio_play_sound(snBlip,2,false);
 				}
 			} else {
-				volAcceptMenuInput = true;	
+				acceptMenuInput	= true;	
+			}
+	
+			if (option == 0 and keyConfirm) {
+				TitleStart();
+			}
+	
+			if (option == 1 and keyConfirm) {
+				TitleGotoLeaderboard();
+			}
+	
+			if (option == 2) {
+				if (alarm[0] <= 0) alarm[0] = 30;
+				if keyboard_lastkey != vk_nokey {
+					if (keyboard_lastkey == vk_backspace or (ord(keyboard_lastchar) >= 32 and ord(keyboard_lastchar) <= 255)) and string_length(keyboard_string) <= 10 and (keyboard_lastkey != vk_space or string_length(global.username) > 0) {
+						if (OPERA and string_length(keyboard_string) > string_length(global.username)) {
+							var _char = string_char_at(keyboard_string, string_length(keyboard_string));
+							if (keyboard_check(vk_shift))
+								_char = string_upper(_char);
+							else
+								_char = string_lower(_char);
+							keyboard_string = string_copy(keyboard_string, 1, string_length(keyboard_string)-1) + _char;
+						}
+						global.username = keyboard_string;
+					}
+					else keyboard_string = global.username;
+					keyboard_lastkey = vk_nokey;
+				}
+			}
+	
+			if (option == 3) {
+				if (keyLeft or keyRight) {
+					if (volAcceptMenuInput) {
+						volAcceptMenuInput = false;
+						global.audioVol = clamp(global.audioVol + (keyRight - keyLeft) * 0.1, 0, 1);
+						Save("settings","vol",global.audioVol);
+						audio_master_gain(global.audioVol);
+						audio_play_sound(snBlip,2,false);
+					}
+				} else {
+					volAcceptMenuInput = true;	
+				}
+			}
+		} else {
+			if (mouse_check_button_pressed(mb_left)) {
+				if (buttonStart.clicked())
+					TitleStart();
+				else if (buttonLeaderboard.clicked())
+					TitleGotoLeaderboard();
+				else if (buttonUsername.clicked())
+					TitleChangeName();
 			}
 		}
-	
+		
 		usernameFlash = Approach(usernameFlash, 0, 0.04);
 	} else {
 		if (keyConfirm) {
