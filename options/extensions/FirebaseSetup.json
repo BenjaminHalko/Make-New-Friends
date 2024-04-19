@@ -4,7 +4,7 @@
     "af7e8666-54d3-4cbd-b2a3-9ea5847d1e21": null,
     "d898ff5d-783b-4206-bf9f-9fdcb8e7bf07": {
       "Default": {
-        "value": "extensions/FirebaseSetup/google-services.json"
+        "value": "extensions/FirebaseSetup/AndroidSource/ProjectFiles/google-services.json"
       }
     },
     "75639da0-a6d6-48e7-88d8-c81aa1f7ffff": null,

@@ -2,49 +2,62 @@
 
 if (x != room_width + widthHalf + 50) {
 	if (!lookAtLeaderboard) {
-		draw_set_font(fLarge);
-		draw_set_color(c_white);
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_top);
-		
-		var _titleY = -36;
-		draw_sprite_ext(sFriend, FACE.Friend, x-74, y+_titleY-15,0.7+0.3*titlePulse[0],0.7+0.3*titlePulse[0],lerp(0, -10, sin(-global.audioPos * pi)),c_white,1);
-		draw_sprite_ext(sFriend, FACE.Friend, x+18, y+_titleY+20,-0.7-0.3*titlePulse[1],0.7+0.3*titlePulse[1],lerp(-35, -45, sin(-global.audioPos * pi)),c_white,1);
-		
-		if (!MOBILE and false) {
-			var _menuX = x - 34;
-			var _menuY = y + 8;
-		
-			draw_text(_menuX - 10, _menuY + 16 * option + 8 * (option == 3), ">");
-			draw_text(_menuX, _menuY, "START");
-		
-			_menuY += 16;
-			draw_text(_menuX, _menuY, "LEADERBOARD");
-		
-			_menuY += 16;
-			draw_set_color(merge_color(c_white, c_red, usernameFlash));
-			draw_text(_menuX+random_range(-2,2)*usernameFlash, _menuY+random_range(-2,2)*usernameFlash, "USERNAME");
+		if (!editUsername) {
+			draw_set_font(fLarge);
 			draw_set_color(c_white);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_top);
 		
-			_menuY += 5;
-			var _username = global.username;
-			draw_set_font(fNormal);
-			if (blink and option == 2) _username += "_";
+			var _titleY = -36;
+			draw_sprite_ext(sFriend, FACE.Friend, x-74, y+_titleY-15,0.7+0.3*titlePulse[0],0.7+0.3*titlePulse[0],lerp(0, -10, sin(-global.audioPos * pi)),c_white,1);
+			draw_sprite_ext(sFriend, FACE.Friend, x+18, y+_titleY+20,-0.7-0.3*titlePulse[1],0.7+0.3*titlePulse[1],lerp(-35, -45, sin(-global.audioPos * pi)),c_white,1);
+		
+			if (!MOBILE) {
+				var _menuX = x - 34;
+				var _menuY = y + 8;
+		
+				draw_text(_menuX - 10, _menuY + 16 * option + 8 * (option == 3), ">");
+				draw_text(_menuX, _menuY, "START");
+		
+				_menuY += 16;
+				draw_text(_menuX, _menuY, "LEADERBOARD");
+		
+				_menuY += 16;
+				draw_set_color(merge_color(c_white, c_red, usernameFlash));
+				draw_text(_menuX+random_range(-2,2)*usernameFlash, _menuY+random_range(-2,2)*usernameFlash, "USERNAME");
+				draw_set_color(c_white);
+		
+				_menuY += 5;
+				var _username = global.username;
+				draw_set_font(fNormal);
+				if (blink and option == 2) _username += "_";
+				if (global.username == "") {
+					draw_set_color(c_dkgray);
+					draw_text(_menuX+16, _menuY, "ENTER USERNAME");
+					draw_set_color(c_white);
+				}
+				draw_text(_menuX + 16, _menuY, _username);
+	
+				_menuY += 22;
+				draw_sprite(sAudioLine,0,_menuX,_menuY);
+				draw_sprite(sAudioLine,1,_menuX+round(60 * global.audioVol),_menuY);
+				draw_sprite(sAudio,0,_menuX+62,_menuY);
+			} else {
+				buttonStart.draw();
+				buttonLeaderboard.draw();
+				buttonUsername.draw();
+			}
+		} else {
+			draw_set_font(fLarge);
+			draw_set_color(c_white);
+			draw_set_halign(fa_center);
+			draw_set_valign(fa_middle);
 			if (global.username == "") {
 				draw_set_color(c_dkgray);
-				draw_text(_menuX+16, _menuY, "ENTER USERNAME");
-				draw_set_color(c_white);
+				draw_text_transformed(x, y-60, "USERNAME",2,2,0);
+			} else {
+				draw_text_transformed(x, y-60, global.username,2,2,0);	
 			}
-			draw_text(_menuX + 16, _menuY, _username);
-	
-			_menuY += 22;
-			draw_sprite(sAudioLine,0,_menuX,_menuY);
-			draw_sprite(sAudioLine,1,_menuX+round(60 * global.audioVol),_menuY);
-			draw_sprite(sAudio,0,_menuX+62,_menuY);
-		} else {
-			buttonStart.draw();
-			buttonLeaderboard.draw();
-			buttonUsername.draw();
 		}
 	} else {
 		draw_set_font(fLarge);

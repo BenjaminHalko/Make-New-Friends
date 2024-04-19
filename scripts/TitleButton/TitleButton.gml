@@ -23,6 +23,7 @@ function TitleButton(_sprite,_name,_width=-1,_iconOverText=false,_textSize=1,_he
 	height = _height;
 	originalHeight = height;
 	iconOnRight = false;
+	fontColor = c_white;
 	
 	borderWidthHalf = 0;
 	borderHeightHalf = 0;
@@ -48,6 +49,7 @@ function TitleButton(_sprite,_name,_width=-1,_iconOverText=false,_textSize=1,_he
 	}
 	
 	updateText = function(_newText) {
+		draw_set_font(fLarge);
 		name = _newText;
 		textWidth = string_width(_newText)*textSize;
 		textHeight = string_height(_newText)*textSize;
@@ -77,6 +79,7 @@ function TitleButton(_sprite,_name,_width=-1,_iconOverText=false,_textSize=1,_he
 			draw_set_color(c_white);
 			if coloredBorder != c_white _col = c_white;
 			if !is_undefined(sprite) draw_sprite_ext(sprite,index,_x-widthHalf*(1-iconOnRight*2)-spriteWidth*iconOnRight,_y-spriteHeight/2,1,1,0,_col,1);
+			draw_set_color(fontColor);
 			if name != "" and !_dontDrawText draw_text_transformed(_x+widthHalf*(1-iconOnRight*2),_y+1,name,textSize,textSize,0);
 		}
 	}
