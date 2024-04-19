@@ -26,13 +26,19 @@ if (_beat >= targetBeat) {
 		
 		oGUI.evilPulse = 1;
 		global.lives--;
-		oGUI.heartScale[global.lives div 2] = 1.4;
+		oGUI.heartScale[global.lives] = 1.4;
 		if (global.lives <= 0) {
 			oTitle.diedTo = name;
 			GameOver();
 			PersonDestroy(120);
 			audio_play_sound(snLargeExplosion, 1, false);	
 		} else {
+			with(oPerson) {
+				if (normalizedTargetBeat < global.audioPos + 2 and id != other.id) {
+					PersonDestroy(20);
+					instance_destroy();
+				}
+			}
 			PersonDestroy();
 			audio_play_sound(snSmallExplosion, 1, false,1,0,0.7+properties.sides*0.1);	
 		}

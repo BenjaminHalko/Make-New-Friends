@@ -7,4 +7,4 @@
 #macro MinSpawnX 200
 #macro MaxSpawnX room_width+240
 
-#macro MaxHealth 4
+#macro MaxHealth 3
