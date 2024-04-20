@@ -49,7 +49,6 @@ if (!instance_exists(oShapeAbsorb) and _percent >= 0) {
 	}
 	
 	if (instance_exists(personID)) {
-		worried = true;
 		if (personID.properties.color != global.currentShape.color or personID.properties.sides != global.currentShape.sides) {
 			worried = true;
 		} else {

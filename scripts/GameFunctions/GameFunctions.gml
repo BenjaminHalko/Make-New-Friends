@@ -1,4 +1,4 @@
-global.lives = 6;
+global.lives = MaxHealth;
 global.friendsNeeded = 1;
 global.friendsMade = 0;
 global.offBeatChance = array_create(2, 0);
@@ -29,6 +29,12 @@ function RoundEnd(_addScore=true) {
 	if (_addScore) {
 		global.score += 100 * global.friendsNeeded;
 		global.round++;
+		if ((global.round-1) % 5 == 0)
+			ChangeBackground(c_black);
+		else {
+			var _col = [2,3,1,0];
+			ChangeBackground(make_color_hsv(color_get_hue(global.shapeProperties[_col[(global.round+3) % 5]].color), 255, 10));
+		}
 		audio_play_sound(snRoundComplete, 1, false);
 	}
 }
@@ -65,6 +71,7 @@ function ToGame() {
 	global.lives = MaxHealth;
 	global.round = 1;
 	global.score = 0;
+	ChangeBackground(c_black);
 	with(oShapeSummoner) {
 		if (hasShape) {
 			instance_create_depth(x,y,depth-1,oShapeExplode,{wait: 15});
@@ -81,8 +88,15 @@ function ToTitle() {
 	global.title = true;
 	global.gameOver = false;
 	ChangeBPM(130);
+	ChangeBackground(c_black);
 	oGUI.alarm[0] = -1;
 	oGUI.startNum = 0;
 	oGUI.roundComplete = false;
 	oTitle.lookAtLeaderboard = false;
+}
+
+function ChangeBackground(_col) {
+	oGUI.lastBackgroundColor = oGUI.backgroundColor;
+	oGUI.backgroundColor = _col;	
+	oGUI.backgroundPercent = 0;
 }
