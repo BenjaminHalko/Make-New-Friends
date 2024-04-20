@@ -11,6 +11,7 @@ globalvar keyRight; keyRight = false;
 globalvar keyUp; keyUp = false;
 globalvar keyDown; keyDown = false;
 globalvar keyConfirm; keyConfirm = false;
+globalvar keyBack; keyBack = false;
 
 global.shapeProperties = [
 	new ShapeProperties(3, #FF2055),
