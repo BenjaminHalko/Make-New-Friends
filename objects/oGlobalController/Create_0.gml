@@ -13,6 +13,10 @@ globalvar keyDown; keyDown = false;
 globalvar keyConfirm; keyConfirm = false;
 globalvar keyBack; keyBack = false;
 
+dragging = false;
+draggingX = 0;
+draggingY = 0;
+
 global.shapeProperties = [
 	new ShapeProperties(3, #FF2055),
 	new ShapeProperties(6, #ffdd12),
@@ -32,6 +36,8 @@ ini_close();
 
 audio_master_gain(global.audioVol);
 global.showLeaderboardNames = true;
+
+device_mouse_dbclick_enable(false);
 
 instance_create_depth(0,0,0,oLeaderboardAPI);
 

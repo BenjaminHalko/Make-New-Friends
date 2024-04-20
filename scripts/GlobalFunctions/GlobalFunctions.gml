@@ -1,6 +1,4 @@
 #macro FIREBASE_LEADERBOARD_URL "https://ludum-dare-55-default-rtdb.firebaseio.com/"
-#macro GXG_CHALLENGE_ID ""
-#macro GOOGLEPLAY_LEADERBOARD_ID ""
 
 #macro SAVEFILE "save.ini"
 
@@ -8,8 +6,6 @@
 #macro OPERA (global.ostype == OS.OSOPERA)
 #macro DESKTOP (global.ostype == OS.OSDESKTOP)
 #macro MOBILE (global.ostype == OS.OSMOBILE or os_type == os_android or global.mobileOperaGX)
-
-#macro OTHER_LEADERBOARD (OPERA or MOBILE)
 
 enum OS {
 	OSBROWSER,

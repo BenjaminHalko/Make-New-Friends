@@ -113,10 +113,11 @@ if (x != room_width + widthHalf + 50) {
 	
 		draw_set_color(c_dkgray);
 		draw_set_halign(fa_center);
-		if (!MOBILE)
+		if (!MOBILE) {
 			draw_text(x,_y+124,"PRESS ENTER TO");
-		else
-			draw_text(x,_y+124,"TAP ANYWHERE TO");
-		draw_text(x,_y+133,"CONTINUE");	
+			draw_text(x,_y+133,"CONTINUE");	
+		} else
+			buttonLeaderboardContinue.draw();
+		
 	}
 } 

@@ -14,14 +14,14 @@ else if (global.title)
 // INPUT
 if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 	if (!lookAtLeaderboard) {
+		if (global.audioTick) {
+			titlePulse[global.audioBeat % 2] = 1;	
+		}
+		
+		titlePulse[0] = ApproachFade(titlePulse[0], 0, 0.1, 0.8);
+		titlePulse[1] = ApproachFade(titlePulse[1], 0, 0.1, 0.8);
+		
 		if (!MOBILE) {
-			if (global.audioTick) {
-				titlePulse[global.audioBeat % 2] = 1;	
-			}
-		
-			titlePulse[0] = ApproachFade(titlePulse[0], 0, 0.1, 0.8);
-			titlePulse[1] = ApproachFade(titlePulse[1], 0, 0.1, 0.8);
-		
 			if (keyDown or keyUp) and (option != 2 or (!keyboard_check(ord("W")) and !keyboard_check(ord("S")))) {
 				if (acceptMenuInput) {
 					if (option == 2) {
@@ -154,9 +154,28 @@ if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 		}
 		
 		if (MOBILE) {
+			buttonLeaderboardContinue.y = -heightHalf+12+130+28*global.gameOver;
 			if (mouse_check_button_pressed(mb_left)) {
 				if (buttonLeaderboardContinue.clicked()) {
-					
+					if (global.title) {
+						lookAtLeaderboard = false;
+						audio_play_sound(snBlip, 2, false);
+					} else {
+						ToGame();
+					}
+				} else {
+					draggingStart = mouse_y;
+					draggingLeaderboard = true;
+					draggingLeaderboardStartPos = scoreOffsetTarget;
+				}
+			}
+			
+			if (draggingLeaderboard) {
+				if (!mouse_check_button(mb_left)) {
+					draggingLeaderboard = false;
+				} else {
+					scoreOffsetTarget = median(draggingLeaderboardStartPos + round((draggingStart - mouse_y) / 10), 0, array_length(oLeaderboardAPI.scores)-scoresPerPage);
+					scoreOffset = scoreOffsetTarget;
 				}
 			}
 		}
