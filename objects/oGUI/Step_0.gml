@@ -9,6 +9,12 @@ for(var i = 0; i < 3; i++) {
 	heartScale[i] = Approach(heartScale[i],1,0.05);	
 }
 
+if (backgroundPercent != 1) {
+	backgroundPercent = Approach(backgroundPercent, 1, 0.02);
+	var _col = merge_color(lastBackgroundColor, backgroundColor, backgroundPercent);
+	layer_background_blend(backgroundID, _col);
+}
+
 // Round Complete
 if (roundComplete) {
 	if (keyConfirm) {

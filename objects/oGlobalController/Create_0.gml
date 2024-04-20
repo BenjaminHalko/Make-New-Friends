@@ -14,9 +14,9 @@ globalvar keyConfirm; keyConfirm = false;
 
 global.shapeProperties = [
 	new ShapeProperties(3, #FF2055),
-	new ShapeProperties(6, #ffee38),
+	new ShapeProperties(6, #ffdd16),
 	new ShapeProperties(5, #2055FF),
-	new ShapeProperties(4, #38df88),
+	new ShapeProperties(4, #10df88),
 ];
 
 global.currentShape = new ShapeProperties(0, c_white);

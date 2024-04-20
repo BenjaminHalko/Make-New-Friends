@@ -6,7 +6,7 @@ properties = new ShapeProperties();
 while(is_undefined(properties.color) and is_undefined(properties.sides)) {
 	var i = irandom(3);
 	if (global.round == 1) {
-		if (oWaveController.created % 12 > 6) {
+		if ((oWaveController.created-1) >= 4) {
 			i = choose(1,3);
 		} else {
 			i = choose(0,2);	
