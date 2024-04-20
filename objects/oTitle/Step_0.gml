@@ -153,6 +153,14 @@ if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 			}
 		}
 		
+		if (MOBILE) {
+			if (mouse_check_button_pressed(mb_left)) {
+				if (buttonLeaderboardContinue.clicked()) {
+					
+				}
+			}
+		}
+		
 		if (scoreOffset == scoreOffsetTarget) {
 			if (array_length(oLeaderboardAPI.scores)-scoresPerPage <= 0) {
 				scoreOffsetTarget = 0;
