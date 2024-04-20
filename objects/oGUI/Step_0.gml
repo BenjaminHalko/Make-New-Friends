@@ -17,7 +17,7 @@ if (backgroundPercent != 1) {
 
 // Round Complete
 if (roundComplete) {
-	if (keyConfirm) {
+	if (keyConfirm or (MOBILE and mouse_check_button_pressed(mb_left))) {
 		NextRound();	
 	}
 }

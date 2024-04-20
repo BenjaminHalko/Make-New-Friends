@@ -20,6 +20,8 @@ while(is_undefined(properties.color) and is_undefined(properties.sides)) {
 }
 
 startBeat = global.audioPos;
+lastPos = global.audioPos;
+lastFakePos = global.audioPos;
 
 var _spawnnerYMargin = 20;
 WaveSetup(MinSpawnX, MaxSpawnX, _spawnnerYMargin, oShapeSummoner.x+24);

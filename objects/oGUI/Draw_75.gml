@@ -56,5 +56,5 @@ if (roundComplete) {
 		draw_text(room_width/2+38, room_height/2-13, $"+");
 	} else
 		draw_text(room_width/2+45, room_height/2-18, $"+{global.friendsNeeded*100} POINTS");
-	draw_text(room_width/2+45, room_height/2+12, $"PRESS ENTER TO CONTINUE");
+	draw_text(room_width/2+45, room_height/2+12, MOBILE ? "TAP TO CONTINUE" : "PRESS ENTER TO CONTINUE");
 }

@@ -26,6 +26,34 @@ keyDown = keyDown or keyboard_check(vk_down) or keyboard_check(ord("S"));
 keyConfirm = keyConfirm or keyboard_check_pressed(vk_enter) or keyboard_check_pressed(vk_space) or keyboard_check_pressed(vk_shift);
 keyBack = keyBack or keyboard_check_pressed(vk_escape) or ((!global.title or oTitle.lookAtLeaderboard) and keyboard_check_pressed(vk_backspace));
 
+if (MOBILE and !global.title and !global.gameOver) {
+	if (!dragging) {
+		if (mouse_check_button_pressed(mb_left)) {
+			if (mouse_x > oInputCircle.x + oInputCircle.sprite_width/2) {
+				dragging = true;
+				draggingX = mouse_x;
+				draggingY = mouse_y;
+			}
+		}
+	} else {
+		if (!mouse_check_button(mb_left)) {
+			dragging = false;	
+		} else {
+			if (point_distance(draggingX, draggingY, mouse_x, mouse_y) >+ 32) {
+				var _dir = Wrap(point_direction(draggingX, draggingY, mouse_x, mouse_y)+45, 0, 360) div 90;
+				if (_dir == 0)
+					keyRight = true;
+				else if (_dir == 1)
+					keyUp = true;
+				else if (_dir == 2)
+					keyLeft = true;
+				else
+					keyDown = true;
+			}
+		}
+	}
+}
+
 if (keyboard_check_pressed(vk_f4) or keyboard_check_pressed(vk_f11)) {
 	window_set_fullscreen(!window_get_fullscreen());	
 }

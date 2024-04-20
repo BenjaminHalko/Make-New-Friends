@@ -1,6 +1,13 @@
 /// @desc 
 
 var _beat = global.audioPos;
+
+if (lastPos == _beat)
+	_beat = lastFakePos + delta_time / 1000000 / 60 * oMusicController.bpm;
+else
+	lastPos = _beat;
+lastFakePos = _beat;
+
 if (_beat < startBeat) {
 	_beat += global.maxBeats;
 }
@@ -11,7 +18,7 @@ y = _points.y;
 
 angle += 2;
 
-if (_beat >= targetBeat) {
+if (lastPos >= targetBeat) {
 	if (!instance_exists(oShapeAbsorb)) {
 		with(oShapeSummoner) {
 			if (hasShape) {
