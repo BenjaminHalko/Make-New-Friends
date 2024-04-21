@@ -32,11 +32,12 @@ global.username = ini_read_string("settings","username","");
 global.audioVol = ini_read_real("settings","vol",0.7);
 global.pb =  ini_read_real("score","score",0);
 global.render = ini_read_real("settings","render",true);
+global.stars = ini_read_real("settings","stars",true);
+global.gamepad = ini_read_real("settings","gamepad",true);
 ini_close();
 
 audio_master_gain(global.audioVol);
 global.showLeaderboardNames = true;
-global.gamepad = true;
 
 device_mouse_dbclick_enable(false);
 

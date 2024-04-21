@@ -13,6 +13,7 @@ introY = -heightHalf-200;
 
 option = 0;
 lookAtLeaderboard = false;
+lookAtOptions = false;
 acceptMenuInput = true;
 volAcceptMenuInput = true;
 usernameFlash = 0;

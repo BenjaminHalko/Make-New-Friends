@@ -73,8 +73,3 @@ if (keyBack) {
 		ToTitle();	
 	}
 }
-
-if (keyboard_check_pressed(ord("G")) and keyboard_check(vk_alt)) {
-	global.gamepad = !global.gamepad;
-	audio_play_sound(snBlip, 1, false);
-}
