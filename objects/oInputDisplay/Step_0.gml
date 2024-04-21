@@ -80,7 +80,7 @@ if (!_lastPressed and isPressed) {
 pulse = Approach(pulse, 0, 0.15);
 rotation = ApproachFade(rotation, -rotationTarget * 20, 10, 0.8);
 
-var _pressed = (!_hasColor or global.shapeProperties[index].color == global.currentShape.color) and (!_hasSides or global.shapeProperties[index].sides == global.currentShape.sides);
+var _pressed = (global.inGame) and (!_hasColor or global.shapeProperties[index].color == global.currentShape.color) and (!_hasSides or global.shapeProperties[index].sides == global.currentShape.sides);
 selectedPercent = ApproachFade(selectedPercent, _pressed, 0.4, 0.7);
 pressedPercent = ApproachFade(pressedPercent, isPressed and !locked, 0.4, 0.6);
 
