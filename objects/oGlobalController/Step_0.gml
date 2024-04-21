@@ -9,14 +9,16 @@ keyDown = false;
 keyConfirm = false;
 keyBack = false;
 
-var _deadzone = 0.4;
-for(var i = 0; i < gamepad_get_device_count(); i++) {
-	keyLeft = keyLeft or gamepad_button_check(i, gp_padl) or (gamepad_button_check(i, gp_face3) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislh) < -_deadzone) or (gamepad_axis_value(i, gp_axisrh) < -_deadzone);
-	keyRight = keyRight or gamepad_button_check(i, gp_padr) or (gamepad_button_check(i, gp_face2) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislh) > _deadzone) or (gamepad_axis_value(i, gp_axisrh) > _deadzone);
-	keyUp = keyUp or gamepad_button_check(i, gp_padu) or (gamepad_button_check(i, gp_face4) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislv) < -_deadzone) or (gamepad_axis_value(i, gp_axisrv) < -_deadzone);
-	keyDown = keyDown or gamepad_button_check(i, gp_padd) or (gamepad_button_check(i, gp_face1) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislv) > _deadzone) or (gamepad_axis_value(i, gp_axisrv) > _deadzone);
-	keyConfirm = keyConfirm or gamepad_button_check_pressed(i, gp_face1) or gamepad_button_check_pressed(i, gp_face2) or gamepad_button_check_pressed(i, gp_face3) or gamepad_button_check_pressed(i, gp_face4) or gamepad_button_check_pressed(i, gp_start);
-	keyBack = keyBack or gamepad_button_check_pressed(i, gp_select);
+if (global.gamepad) {
+	var _deadzone = 0.4;
+	for(var i = 0; i < gamepad_get_device_count(); i++) {
+		keyLeft = keyLeft or gamepad_button_check(i, gp_padl) or (gamepad_button_check(i, gp_face3) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislh) < -_deadzone) or (gamepad_axis_value(i, gp_axisrh) < -_deadzone);
+		keyRight = keyRight or gamepad_button_check(i, gp_padr) or (gamepad_button_check(i, gp_face2) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislh) > _deadzone) or (gamepad_axis_value(i, gp_axisrh) > _deadzone);
+		keyUp = keyUp or gamepad_button_check(i, gp_padu) or (gamepad_button_check(i, gp_face4) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislv) < -_deadzone) or (gamepad_axis_value(i, gp_axisrv) < -_deadzone);
+		keyDown = keyDown or gamepad_button_check(i, gp_padd) or (gamepad_button_check(i, gp_face1) and !global.title and !global.gameOver) or (gamepad_axis_value(i, gp_axislv) > _deadzone) or (gamepad_axis_value(i, gp_axisrv) > _deadzone);
+		keyConfirm = keyConfirm or gamepad_button_check_pressed(i, gp_face1) or gamepad_button_check_pressed(i, gp_face2) or gamepad_button_check_pressed(i, gp_face3) or gamepad_button_check_pressed(i, gp_face4) or gamepad_button_check_pressed(i, gp_start);
+		keyBack = keyBack or gamepad_button_check_pressed(i, gp_select);
+	}
 }
 
 keyLeft = keyLeft or keyboard_check(vk_left) or keyboard_check(ord("A"));
@@ -70,4 +72,9 @@ if (keyBack) {
 			LeaderboardPost();
 		ToTitle();	
 	}
+}
+
+if (keyboard_check_pressed(ord("G")) and keyboard_check(vk_alt)) {
+	global.gamepad = !global.gamepad;
+	audio_play_sound(snBlip, 1, false);
 }

@@ -36,6 +36,7 @@ ini_close();
 
 audio_master_gain(global.audioVol);
 global.showLeaderboardNames = true;
+global.gamepad = true;
 
 device_mouse_dbclick_enable(false);
 
