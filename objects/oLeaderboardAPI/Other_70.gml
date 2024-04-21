@@ -31,7 +31,7 @@ if (async_load[? "type"] == "FirebaseRealTime_Read" or async_load[? "type"] == "
 			}
 			
 			array_sort(scores, function(_ele1,_ele2){
-				return (_ele2.points - _ele1.points)
+				return (_ele2.points - _ele1.points) + (_ele2.level - _ele1.level) * 10000;
 			});
 			
 			global.highscore = scores[0].points;
