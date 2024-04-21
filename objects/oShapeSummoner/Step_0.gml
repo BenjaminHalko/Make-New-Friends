@@ -3,7 +3,7 @@
 if (global.title and !hasShape and oTitle.y > room_height/2+oGUI.guiY/2-room_height) {
 	SummonShape();
 	global.currentShape.sides = 5;
-	global.currentShape.color = #FF2055;
+	global.currentShape.color = #2055FF;
 }
 
 hasShapePercent = ApproachFade(hasShapePercent, hasShape, 0.1, 0.8);
