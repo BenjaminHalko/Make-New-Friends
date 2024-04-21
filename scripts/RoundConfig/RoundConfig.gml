@@ -27,7 +27,7 @@ function RoundConfig() {
 			global.offBeatChance = [2, 3];
 			break;
 		default:
-			ChangeBPM(130 + (global.round div 5) * 10);
+			ChangeBPM(130 + ((global.round-1) div 5) * 10);
 			global.beatOffset = 5 - ((global.round-1) % 5 >= 2);
 			global.friendsNeeded = 10 + global.round * 5;
 			switch(global.round % 5) {

@@ -35,7 +35,7 @@ function RoundEnd(_addScore=true) {
 			var _col = [2,3,1,0];
 			ChangeBackground(make_color_hsv(color_get_hue(global.shapeProperties[_col[(global.round+3) % 5]].color), 255, 10));
 		}
-		ChangeBPM(130 + (global.round div 5) * 10);
+		ChangeBPM(130 + ((global.round-1) div 5) * 10);
 		audio_play_sound(snRoundComplete, 1, false);
 	}
 }
