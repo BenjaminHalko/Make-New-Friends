@@ -80,7 +80,6 @@
     {"name":"shShockwave","order":3,"path":"shaders/shShockwave/shShockwave.yy",},
     {"name":"mMusic","order":1,"path":"sounds/mMusic/mMusic.yy",},
     {"name":"mMusicFaster","order":2,"path":"sounds/mMusicFaster/mMusicFaster.yy",},
-    {"name":"mMusicFastest","order":4,"path":"sounds/mMusicFastest/mMusicFastest.yy",},
     {"name":"snFriend","order":4,"path":"sounds/snFriend/snFriend.yy",},
     {"name":"snLargeExplosion","order":2,"path":"sounds/snLargeExplosion/snLargeExplosion.yy",},
     {"name":"snRoundComplete","order":6,"path":"sounds/snRoundComplete/snRoundComplete.yy",},

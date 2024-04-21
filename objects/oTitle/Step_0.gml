@@ -98,8 +98,10 @@ if (global.title or global.gameOver) and (instance_number(oShapeExplode) <= 1) {
 					
 					if (global.username == "") {
 						buttonUsername.updateText("USERNAME");
+						buttonUsername.updatePos();
 					} else {
 						buttonUsername.updateText(global.username);
+						buttonUsername.updatePos();
 						buttonUsername.fontColor = c_white;
 					}
 					

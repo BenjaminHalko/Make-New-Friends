@@ -6,20 +6,18 @@ function ChangeBPM(_bpm) {
 		var _music = mMusic;
 		if (_bpm == 130) {
 			_music = mMusic;
-		} else if (_bpm == 140) {
-			_music = mMusicFaster;
 		} else {
-			_music = mMusicFastest;
+			_music = mMusicFaster;
 		}
 		
-		if (bpm < 150 or _bpm < 150) {
+		if (bpm < 140 or _bpm < 140) {
 			var _trackPercent = audio_sound_get_track_position(music) * bpm / _bpm;
 			audio_stop_sound(music);
 			music = audio_play_sound(_music, 1, true, 1, _trackPercent);
 		}
 		
-		if (_bpm >= 150) {
-			audio_sound_pitch(music, _bpm / 150);
+		if (_bpm >= 140) {
+			audio_sound_pitch(music, _bpm / 140);
 		}
 		
 		bpm = _bpm;

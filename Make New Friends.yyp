@@ -110,7 +110,6 @@
     {"id":{"name":"shShockwave","path":"shaders/shShockwave/shShockwave.yy",},},
     {"id":{"name":"mMusic","path":"sounds/mMusic/mMusic.yy",},},
     {"id":{"name":"mMusicFaster","path":"sounds/mMusicFaster/mMusicFaster.yy",},},
-    {"id":{"name":"mMusicFastest","path":"sounds/mMusicFastest/mMusicFastest.yy",},},
     {"id":{"name":"snBlip","path":"sounds/snBlip/snBlip.yy",},},
     {"id":{"name":"snFriend","path":"sounds/snFriend/snFriend.yy",},},
     {"id":{"name":"snLargeExplosion","path":"sounds/snLargeExplosion/snLargeExplosion.yy",},},
