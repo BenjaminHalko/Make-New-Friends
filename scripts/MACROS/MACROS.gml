@@ -7,4 +7,6 @@
 #macro MinSpawnX 200
 #macro MaxSpawnX room_width+240
 
+#macro MaxBPM 140
+
 #macro MaxHealth 3
