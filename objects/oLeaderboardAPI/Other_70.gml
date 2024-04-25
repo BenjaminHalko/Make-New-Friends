@@ -22,11 +22,9 @@ if (async_load[? "type"] == "FirebaseRealTime_Read" or async_load[? "type"] == "
 						array_push(names, _names[i]);
 					}
 				} catch(_error) {
-					scores[i] = {
-						name: _names[i],
-						points: 0,
-						level: 0
-					}
+					array_delete(scores, i, 1);
+					array_delete(_names, i, 1);
+					i--;
 				}
 			}
 			
