@@ -78,3 +78,15 @@ if (keyboard_check_pressed(ord("G")) and keyboard_check(vk_alt)) {
 	global.gamepad = !global.gamepad;
 	audio_play_sound(snBlip, 1, false);
 }
+
+with(oLeaderboardAPI) {
+	if (!score_chasers and keyboard_check(vk_alt) and keyboard_check_pressed(ord("S"))) {
+		FirebaseRealTime(FIREBASE_LEADERBOARD_URL).ListenerRemove(listener);
+		listener = FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path("/scorechasers/").Listener();
+		scores = [];
+		global.highscore = 0;
+		score_chasers = true;
+		audio_play_sound(snFriend, 1, false);
+		keyDown = false;
+	}	
+}

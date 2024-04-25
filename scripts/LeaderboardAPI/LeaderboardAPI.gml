@@ -1,8 +1,3 @@
-/// @desc Get the current leaderboards
-function LeaderboardGet() {
-	FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path("/").Read();
-}
-
 /// @desc Post a score to the leaderboards
 /// @param {struct} score
 function LeaderboardPost() {
@@ -35,7 +30,8 @@ function LeaderboardPost() {
 			
 			global.highscore = scores[0].points;
 			
-			FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path(_score.name).Set(json_stringify({
+			var _path = score_chasers ? "scorechasers/" : "";
+			FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path(_path+_score.name).Set(json_stringify({
 				points: _score.points,
 				level: _score.level
 			}));
