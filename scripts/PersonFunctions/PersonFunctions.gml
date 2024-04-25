@@ -12,7 +12,17 @@ function PersonDestroy(_wait=5) {
 }
 
 function PickName() {
-	if (array_length(oLeaderboardAPI.scores) >= 10 and global.showLeaderboardNames) {
+	if (oLeaderboardAPI.score_chasers) {
+		if (array_length(oLeaderboardAPI.scores) > 1) {
+			var _name;
+			do {
+				oLeaderboardAPI.lastScore++;
+				_name = oLeaderboardAPI.scores[oLeaderboardAPI.lastScore % array_length(oLeaderboardAPI.scores)].name;
+			} until(_name != global.username);
+			return _name;
+		}
+	}
+	else if (array_length(oLeaderboardAPI.scores) >= 10 and global.showLeaderboardNames) {
 		var _name = global.username;
 		if (array_length(global.lastNames) > 8) {
 			global.lastNames = [];	

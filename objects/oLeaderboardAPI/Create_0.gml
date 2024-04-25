@@ -4,6 +4,7 @@ scores = [];
 names = [];
 
 score_chasers = false;
+lastScore = 0;
 
 global.score = 0;
 global.round = 1;
