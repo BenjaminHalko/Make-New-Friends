@@ -5,6 +5,7 @@ names = [];
 
 score_chasers = false;
 lastScore = 0;
+score_chasers_timer = 0;
 
 global.score = 0;
 global.round = 1;
