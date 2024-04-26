@@ -17,7 +17,7 @@ if (backgroundPercent != 1) {
 
 // Round Complete
 if (roundComplete and instance_number(oShapeExplode) <= 1) {
-	if (keyConfirm or (MOBILE and mouse_check_button_pressed(mb_left))) {
+	if (keyConfirm or keyLeft or keyRight or keyUp or keyDown or (MOBILE and mouse_check_button_pressed(mb_left))) {
 		NextRound();	
 	}
 }
