@@ -9,7 +9,8 @@ function LeaderboardPost() {
 	
 	if (_score.points > global.pb) {
 		global.pb = _score.points;
-		Save("score", "score", _score.points);
+		if (!oLeaderboardAPI.score_chasers)
+			Save("score", "score", _score.points);
 		oGUI.newPB = true;
 	}
 	with(oLeaderboardAPI) {

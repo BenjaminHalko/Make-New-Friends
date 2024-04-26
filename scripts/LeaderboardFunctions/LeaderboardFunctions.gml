@@ -16,6 +16,8 @@ function PositionLeaderboard() {
 
 function SetLeaderboardPosition() {
 	global.leaderboardPos = array_find_index(oLeaderboardAPI.scores, function(_val) {
+		if (_val.name == global.username)
+			global.pb = max(global.pb, _val.points);
 		return _val.name == global.username;
 	});	
 }

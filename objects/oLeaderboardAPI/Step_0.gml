@@ -8,6 +8,8 @@ if (!score_chasers) {
 			listener = FirebaseRealTime(FIREBASE_LEADERBOARD_URL).Path("/scorechasers/").Listener();
 			scores = [];
 			global.highscore = 0;
+			global.pb = 0;
+			global.leaderboardPos = -1;
 			score_chasers = true;
 			audio_play_sound(snFriend, 1, false);
 		}
