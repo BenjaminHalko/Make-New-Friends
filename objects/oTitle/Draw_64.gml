@@ -12,6 +12,14 @@ if (x != room_width + widthHalf + 50) {
 			draw_sprite_ext(sFriend, FACE.Friend, x-74, y+_titleY-15,0.7+0.3*titlePulse[0],0.7+0.3*titlePulse[0],lerp(0, -10, sin(-global.audioPos * pi)),c_white,1);
 			draw_sprite_ext(sFriend, FACE.Friend, x+18, y+_titleY+20,-0.7-0.3*titlePulse[1],0.7+0.3*titlePulse[1],lerp(-35, -45, sin(-global.audioPos * pi)),c_white,1);
 		
+			if (oLeaderboardAPI.score_chasers) {
+				draw_set_color(c_yellow);
+				draw_set_halign(fa_center);
+				draw_text_transformed(x+80,y, "GOOD LUCK!", 1+(sin(global.audioPos * pi / 2)+1)/8, 1, 15);
+				draw_set_color(c_white);
+				draw_set_halign(fa_left);
+			}
+		
 			if (!MOBILE) {
 				var _menuX = x - 34;
 				var _menuY = y + 8;
