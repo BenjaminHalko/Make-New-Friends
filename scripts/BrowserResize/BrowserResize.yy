@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"BrowserResize",
   "isCompatibility":false,
   "isDnD":false,

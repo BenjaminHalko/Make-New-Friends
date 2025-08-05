@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ShapeSummonerFunctions",
   "isCompatibility":false,
   "isDnD":false,

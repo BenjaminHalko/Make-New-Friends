@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"LeaderboardAPI",
   "isCompatibility":false,
   "isDnD":false,

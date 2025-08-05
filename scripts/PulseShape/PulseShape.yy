@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"PulseShape",
   "isCompatibility":false,
   "isDnD":false,

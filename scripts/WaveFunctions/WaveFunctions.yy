@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"WaveFunctions",
   "isCompatibility":false,
   "isDnD":false,

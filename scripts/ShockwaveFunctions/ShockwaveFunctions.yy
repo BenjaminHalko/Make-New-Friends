@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ShockwaveFunctions",
   "isCompatibility":false,
   "isDnD":false,

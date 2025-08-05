@@ -1,2 +1,4 @@
 datafiles/GMLive/
 build/
+*.resource_order
+*.old
